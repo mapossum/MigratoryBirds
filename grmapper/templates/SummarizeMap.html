@@ -1,0 +1,104 @@
+<div>
+	<h4 style="display: inline;"> Summary By Unit</h4>
+	
+<div class="btn-toolbar pull-right" style="margin-top:-4px" >
+  <div class="btn-group">
+ 
+    <a class="btn" href="#"><i class="icon-chevron-up"></i></a>
+    <a class="btn" href="#"><i class="icon-chevron-down"></i></a>
+    <a class="btn minimize" href="#"><i class="icon-minus"></i></a>
+    <a class="btn closeit" href="#"><i class="icon-remove"></i></a>
+  </div>
+</div>
+
+<div class="allContent">
+    <div class="well well-small well-success" style="margin-bottom:5px;margin-top:10px;">
+   
+   <div class="step step-step1" style="">
+   
+    <h5 data-dojo-attach-point="nameNode" style="display: inline;"><span class="badge badge-inverse">1</span> ${name}, Choose a  </h5>
+    
+  <div class="btn-group">
+    	
+  <span class="btn dropdown-toggle" data-toggle="dropdown">
+    Summary Level
+    <span class="caret"></span>
+  </span>
+           <ul class="dropdown-menu">
+	           	  
+                  <li class="usesite"><a href="#">Site (User Defined)</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Administrative Boundaries</li>
+                  <li><a href="#">Township</a></li>
+                  <li><a href="#">County</a></li>
+                  <li><a href="#">State</a></li>
+                  <li class="nav-header">Watershed Boundaries</li>
+                  <li><a href="#">Individual Great Lakes Basin</a></li>
+                  <li><a href="#">Great Lakes Basin</a></li>
+                  <li><a href="#">Watersheds</a></li>
+
+            </ul>
+    </div>   
+    </div>
+    
+  
+    
+    <div class="step step-step2site" style="display:none;"> 
+    
+    <div class="row"> <div class="span11">
+     <h5 ><span class="badge badge-inverse">2</span> Next, Draw a polygon on the map.  Click once to start, click intermediate vertices, then double click to finish the sketch.  You may draw as many polygons as you wish (County size shapes will take seconds to process, State size polygons will take minutes).  When you are finished click "Submit" below. </h5> </div></div>
+     
+     <div class="row"> <div class="span11"><center> <a class="btn" href="#"><i class="icon-remove"></i> Cancel Sketch</a> <a class="btn" href="#"><i class="icon-arrow-left"></i> Return to Step 1</a> <a class="btn btn-primary submit-features" href="#"><i class="icon-ok icon-white"></i> Submit</a> </center></div></div>
+     
+    </div>
+    
+    <div class="step step-result" style="display:none;"> 
+    
+    <div class="row"> <div class="span11">
+      <span class="badge badge-inverse">Results Report</span>
+    </div></div>
+    
+    <div class="row"> <div class="span3">
+      <h5> Associated Layers <small>Check to toggle visibility</small></h5> </div>
+     
+     <div class="span8"><h4>Summary Chart </h4> 
+     	<div class="chartlocation">
+     	
+     	</div>
+     
+     </div>
+     
+    </div>    
+    </div>
+    
+ <div class="step step-processing" style="display:none;">    
+    
+<center>
+<div id="warningGradientOuterBarG">
+<div id="warningGradientFrontBarG" class="warningGradientAnimationG">
+<div class="warningGradientBarLineG">
+</div>
+<div class="warningGradientBarLineG">
+</div>
+<div class="warningGradientBarLineG">
+</div>
+<div class="warningGradientBarLineG">
+</div>
+<div class="warningGradientBarLineG">
+</div>
+<div class="warningGradientBarLineG">
+</div>
+</div>
+</div>
+</center>
+
+ </div>
+    
+    
+</div>
+</div>
+
+
+
+        
+</div>

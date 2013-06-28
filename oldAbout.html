@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Migratory Birds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="grmapper/css/grmapper.css" rel="stylesheet">
+    
+    <style type="text/css">
+       
+      body {
+        padding-top: 60px;
+        padding-bottom: 20px;
+        padding-left: 0px;
+        padding-right: 0px;
+        background: #E9EDF4 url(resources/images/background.jpg) repeat;
+        color: #666;
+      }
+      .homeHeader {
+	    background: url(resources/images/homeHeader.png) center top no-repeat;  
+	    height: 368px;
+	    position: relative;
+      }
+      
+      .containerTop {
+      
+      width: 1170px;
+      
+      }
+      .containerSmall {
+	    width: 1092px;  
+      }
+      
+      .contentw
+      {
+      	  width: 1092px;
+	      background: #fff;
+	      border-left:3px solid rgba(200,200,200,0.63);
+	      border-right:3px solid rgba(200,200,200,0.63);
+	      border-bottom:2px solid rgba(200,200,200,0.63);
+	      padding-left: 10px;
+	      padding-bottom: 10px;
+	      padding-top: 10px;
+	 }
+
+      .contentwall
+      {
+      	  width: 1092px;
+	      background: #fff;
+	      border:3px solid rgba(200,200,200,0.63);
+	      padding-left: 10px;
+	      padding-bottom: 10px;
+	      padding-top: 10px;
+	 }
+	 
+	 .ispace
+      {
+	      padding: 9px;
+	 }
+	 
+	 .menu li a {
+		 color: #929392;
+		 text-transform: uppercase;
+		 text-decoration: none;
+		 font-weight: bold;
+		 font-size: 13px;
+	}
+	
+	#addthis_home {
+		
+    position: absolute;
+    bottom: 0;
+    right: 50px;
+    padding: 5px;
+    width: 150px;
+    background-color: #E2EFED;
+		
+	}
+	
+	 
+	 /*a:link { text-decoration: none !important;
+		 	  text-transform: uppercase !important;
+	 }*/
+
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css" />
+    
+    
+    <script type="text/javascript">
+    
+    var locationstring = window.location.href;
+// replace() the trailing / with nothing, split on the remaining /, and pop off the last one
+	var result = /\/([^\/]*)$/.exec(locationstring)[1];
+
+    indy = window.location.href.indexOf(result)
+    
+    if (indy > 0) {
+    	apploc = window.location.href.slice(0,indy);
+    } else {
+	    
+	    apploc = window.location.href
+    }
+    
+    var dojoConfig = {
+    async: 1,
+    cacheBust: 1,
+    parseOnLoad: true,
+    packages: [
+        { name: "bootstrap", location: apploc + "/dojoBootstrap" },
+        { name: "grmapper", location: apploc + "/grmapper"}
+    ]
+    };
+    </script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.3"></script>
+    <script type="text/javascript">
+
+      
+      var map;
+      
+      var activatebyTitle;
+      
+      var downloaditems;
+      
+      var enabledownload;
+      
+      require([
+                "bootstrap/Alert",
+                "bootstrap/Button",
+                "bootstrap/Dropdown",
+                "grmapper/mbHeader",
+                "bootstrap/Modal",
+                "dojo/dom-class",
+                "dojo/dom-attr",
+                "dojo/query",
+                "dojo/ready",
+                "dojo/on",
+                "dojo/_base/lang",
+                "bootstrap/Tooltip",
+                "bootstrap/Popover",
+                "dojo/domReady!"
+            ], function (
+                Alert,
+            	bsButton,
+                Dropdown,
+                mbHeader,
+                Modal,
+                domClass,
+                domAttr,
+                query,
+                ready,
+                on,
+                lang,
+                Tooltip,
+                Popover
+            ) {
+	           
+	            
+	           ready(init) 
+	            
+	     
+	           function init() {
+	          
+	          
+		        var topHeader = new mbHeader().placeAt("Topper");
+		        topHeader.startup();
+		           
+		           btns = query(".sidenav")//.onclick(function(e){alert(e)})
+		           
+		           dojo.forEach(btns, function(item, i){
+		             on(item, "click", activateSection); 
+		           });
+		         
+		         
+		         
+		       function activateSection(e) {
+		       
+		       		
+		       		btns = query(".sidenav")
+		       		dojo.forEach(btns, function(item, i){
+		              domClass.remove(item,"btn-success");
+		            });
+		         
+			       domClass.add(this,"btn-success")
+			       
+			       cpv = this.title;
+			       
+			       
+			       pvs = query(".pageview")
+		       		dojo.forEach(pvs, function(item, i){
+		              domAttr.set(item, "style", "display:none");
+		            });
+		            
+		           outcpv = query("." + cpv)
+		           domAttr.set(outcpv[0], "style", "display:");
+		            
+			       
+		       }  
+		           
+		           
+	           } 
+	            
+	
+            
+	            
+            });
+      
+      
+      
+ </script>
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body class="tundra">
+
+ 
+
+    <div class="container containerSmall">
+    
+    <div class="row" >
+    		 <div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 </div>
+    </div>
+    
+    <div class="row" id="Topper">
+  
+  
+    </div>
+    
+    <div class="row">
+
+    
+     </div>
+ 
+    </div>   
+    
+
+ 
+ 
+ 
+ 
+ </div>
+    
+ 
+ <div class="container containerSmall contentwall">    
+    
+         <div class="row">
+         
+         <div class="span3" style="padding-top:30px; padding-left:40px; width:250px">
+         <button class="btn btn-block btn-success sidenav" type="button" title="s1">About This Study</button>
+
+         
+         </div>
+         
+  <div class="span8" >
+         
+
+      <div class="homeHeader">
+      
+      <h2 style="position:relative;top:100px;left:430px;">About This Study</h2>
+
+<div id="addthis_home">    
+       <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50c25229684f669d"></script>
+<!-- AddThis Button END -->
+</div>
+
+   </div>
+
+   	 <div class="pageview s1">
+        <h4 class="text-info">What are stopover sites, and why do they need our attention?</h4>
+        	<p>
+	        	For migratory birds, stopover sites provide essential food resources during a part of the life-cycle when mortality may be high.  Stopover habitat has been neglected in many conservation efforts to protect migratory birds, in part because habitats are used for a short time and use can vary depending on many factors, such as weather conditions during migration.  The Great Lakes, particularly coastal and nearshore areas, provide globally important stopover sites for waterfowl, shorebirds, songbirds, hawks and owls and other waterbirds, such as loons.  Much of the Great Lakes coastal aquatic and terrestrial landscapes that once supported migrating birds has been lost or degraded, yet the region supports hundreds of millions of migrants during both spring and fall migration.  
+        	</p>
+
+        <h4 class="text-info">What we did:  </h4>
+        	<p>
+	        	The objective of this study was to identify and score attributes of areas that serve as important stopover sites for migratory birds within 25 km (15 miles) of the shorelines of Lakes Michigan, Huron, Erie, and Ontario, and connecting water bodies, in the US and Canada, and then map potential stopover habitats across the region based on available GIS data layers.
+        	</p>
+        	<p>
+        	The criteria used to predict locations of stopover sites are based on a literature review and unpublished information gained from reports and regional stopover experts.  (Published resources we used, plus many others, are available in the stopover bibliography).  We identified attributes associated with stopover sites that could be mapped with regionally (US and Canada) available data layers, developed criteria to score these attributes, and then produced maps based on these scores to indicate the relative importance of stopover sites in our study area.   <strong>For complete methods, please see the methods section of the final report and/or the metadata, both available on the <a href='download.html'>Downloads </a> page </strong>.
+        	</p>
+        	ADD SENTENCE ON HOW CREATED WEB PORTAL/SELECTED ANALYTICS FOR WEB MAP, ETC.
+        	
+        <h4 class="text-info">What we found:</h4>
+        	<p>
+	        	Our analysis suggests that areas close to the Great Lakes shorelines are important stopover sites for all groups of birds, including landbirds, shorebirds and waterfowl.  Landbirds are most concentrated within a few miles of the shoreline, migrating waterfowl are most common in nearshore shallow waters of the Great Lakes, and a number of shorebirds use Great Lakes shorelines disproportionately to other habitats.  For all bird groups, relatively extensive areas of habitat seem to be used more than smaller areas of habitat except for landbirds where small areas of habitat surrounded by development harbor high densities of birds.  <strong>Check out the <a href='map.html'>Map</a> page to explore the results.</strong>
+        	</p>   
+        	
+        <h4 class="text-info">Who was involved:</h4>
+        	<p>
+	        	The Nature Conservancy collaborated with the U.S. Fish and Wildlife Service, many conservation organizations, universities, and corporations to predict the relative importance of different areas as stopover sites near Lakes Michigan, Huron, Erie and Ontario and create this web portal.  The Upper Midwest and Great Lakes Conservation Cooperative of the U.S. Fish and Wildlife Service supported development of the predictive model and this website.  It is being served by…. (to be resolved). 
+        	</p>     
+        	
+        <h4 class="text-info">What we hope you will do next:</h4>
+        <h5 class="text-info">Important things to keep in mind when using the maps:</h4>
+        	<p>
+	        	When using maps produced with this project to identify potential stopover habitat, users should keep in mind the following:  1) the maps only take into account landscape variables that we incorporate within a GIS framework because fine detail about vegetation composition and structure were not available throughout the region, 2) there are errors in the land cover data bases used, 3) we used a minimum sized area of approximately 2.5 acres (1 ha) to describe habitat and so areas of habitat smaller than 2.5 acres may not be depicted in our maps, and 4) our maps emphasize distribution of spring migrants rather than fall migrants because more data were available to describe stopover sites used in spring compared to fall. 
+        	</p>      
+         
+   	 </div>
+ 
+   	 
+         </div>
+         	      
+         
+         </div>
+         
+  
+     </div>
+   
+    </div>
+
+     <div class="container containerSmall">
+
+      <footer>
+        <p>&copy; The Nature Conservancy & The University of Southern Mississippi, 2012</p>
+      </footer>
+
+    </div> 
+
+     </div>
+
+
+
+  </body>
+</html>

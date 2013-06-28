@@ -1,0 +1,78 @@
+<div>
+
+      <div class="span2">
+         <H2> Logo Here </H2>
+      </div>
+      
+
+      <div id="topNav">
+      		<ul class="inline pull-right menu" style="padding-top:20px" id="topper">
+      		 <li class="selectedHeader"><a href="index.html" class="popoverlink titlelink selectedHeader" title="" data-content="The main landing page for the site.  Here you can view general overview and background information the project.">Home</a></li>
+             <li><a href="about.html" class="popoverlink titlelink" title="" data-content="More detailed information on this project.">About</a></li>
+             <li><a href="map.html" class="popoverlink titlelink" title="" data-content="Visually explore our results, get summary statistics, etc.">Map</a></li>
+             <li><a href="download.html" class="popoverlink titlelink" title="" data-content="Report, spatial data, metadata, user guide.">Download</a></li>
+             <li><a href="resources.html" class="popoverlink titlelink" title="" data-content="Stopover bibliography & links to other useful sites & data sources.">Resources</a></li>
+             <li><a href="action.html" class="popoverlink titlelink" title="" data-content="See the project in action" style="color:darkred"><i>Action</i></a></li>
+             <li><a href="help.html" class="popoverlink titlelink" title="" data-content="Frequently asked questions about this portal and tips for using it, including ideas for getting the most out of the web mapper.">Help</a></li>
+   <!--   		 <li><a href="contactus.html">Contact Us</a></li>    -->
+   			<li>      		 
+      		   <div class="btn-group">
+	      		 <a class="btn btn-danger" id="userbutton" href="#" style="color:#fff;text-transform:none;font-weight:normal">Unknown User</a>				
+	      		 <a class="btn btn-danger dropdown-toggle" id="userbuttonextra" data-toggle="dropdown" href="#"><span class="caret"></span></a>
+	      		 	<ul class="dropdown-menu">
+		      		 	<li><a href="#" id="showLoginButton" style="font-weight:normal;text-transform:none">Login / Register</a></li>
+		      		 	<li><a href="#" id="signOutButton" style="font-weight:normal;text-transform:none">Sign Out</a></li>
+		      		</ul>
+		      	</div>
+   			</li>
+      		 </ul>
+
+      </div>
+      
+      
+<!-- Button to trigger modal 
+<a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a> -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="display:none">×</button>
+    <h3 id="myModalLabel">Sign In</h3>
+  </div>
+  <div class="modal-body">
+  
+  <center>
+    <p>Currently this site requires you to log in.  Please enter your information below.</p>
+
+ 
+    username:
+    <input type="text" name="UserName" value=""
+    data-dojo-type="dijit/form/TextBox"
+    data-dojo-props="trim:true, propercase:true" id="username" />
+    <br />
+    password:
+    <input type="password" name="Password" value=""
+    data-dojo-type="dijit/form/TextBox"
+    data-dojo-props="trim:true, propercase:true" id="password" />
+    </center>
+ 
+<div class="alert alert-error fade in	" id="baduser" style="display:none">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Oops!</strong> The username or password you entered is not valid.
+</div>
+
+<div class="alert alert-info">
+  <strong></strong> Registration is currently restricted.  Please email ? if you have questions.
+</div>
+    
+  </div>
+  <div class="modal-footer">
+ <!--   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
+    <button class="btn disabled">Register</button>
+    <button class="btn btn-primary" id="loginbutton">Login</button>
+  </div>
+</div>
+ 
+      
+</div>

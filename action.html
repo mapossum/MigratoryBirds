@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Migratory Birds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+    
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    
+    <link href="grmapper/css/grmapper.css" rel="stylesheet">
+    
+    <style type="text/css">
+	 
+	 /*a:link { text-decoration: none !important;
+		 	  text-transform: uppercase !important;
+	 }*/
+
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css" />
+    
+    
+    <script type="text/javascript">
+    
+    var locationstring = window.location.href;
+// replace() the trailing / with nothing, split on the remaining /, and pop off the last one
+	var result = /\/([^\/]*)$/.exec(locationstring)[1];
+
+    indy = window.location.href.indexOf(result)
+    
+    if (indy > 0) {
+    	apploc = window.location.href.slice(0,indy);
+    } else {
+	    
+	    apploc = window.location.href
+    }
+    
+    var dojoConfig = {
+    async: 1,
+    cacheBust: 1,
+    parseOnLoad: true,
+    packages: [
+        { name: "bootstrap", location: apploc + "/dojoBootstrap" },
+        { name: "grmapper", location: apploc + "/grmapper"}
+    ]
+    };
+    </script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.3"></script>
+    <script type="text/javascript">
+
+      
+      var map;
+      
+      var activatebyTitle;
+      
+      var downloaditems;
+      
+      var enabledownload;
+      
+      require([
+                "bootstrap/Alert",
+                "bootstrap/Button",
+                "bootstrap/Dropdown",
+                "grmapper/mbHeader",
+                "bootstrap/Modal",
+                "dojo/dom-class",
+                "dojo/dom-attr",
+                "dojo/query",
+                "dojo/ready",
+                "dojo/on",
+                "dojo/_base/lang",
+                "bootstrap/Tooltip",
+                "bootstrap/Popover",
+                "dojo/domReady!"
+            ], function (
+                Alert,
+            	bsButton,
+                Dropdown,
+                mbHeader,
+                Modal,
+                domClass,
+                domAttr,
+                query,
+                ready,
+                on,
+                lang,
+                Tooltip,
+                Popover
+            ) {
+	           
+	           
+
+	            
+	           ready(init) 
+	            
+	     
+	           function init() {
+	           
+	           
+	           query('.popoverlink').popover({placement:"top",trigger:"hover"})
+	           
+	           
+	           downloaditems = function() {
+	           
+	           	model = query('#downloadModel').modal({"keyboard":false,"backdrop":true});
+	           
+	           	}
+	           	
+	           	
+	           	enabledownload = function() {
+		           
+		           	query("#enabledownload").show();
+		           	
+		            query(".downloadcontent").hide();
+		            
+		            query("#closedisagree")[0].innerHTML = "Close"
+	           	}
+	           	
+	           	
+	           	 activatebyTitle = function(title) {
+	
+					btns = query(".sidenav")
+		       		dojo.forEach(btns, function(item, i){
+		       		 tit = item.getAttribute("data-content");
+		              if (title == tit) {
+			              
+			              thing = item;
+			              
+		              }
+		              
+		            });	           
+		           
+		           a = lang.hitch(thing,activateSection);
+		           a();
+		           
+	           }
+	           
+	           
+	           	var topHeader = new mbHeader().placeAt("Topper");
+		        topHeader.startup();
+	          
+		           
+		           btns = query(".sidenav")//.onclick(function(e){alert(e)})
+		           
+		           dojo.forEach(btns, function(item, i){
+		             on(item, "click", activateSection); 
+		           });
+		         
+		       
+		       //activatebyTitle("s2");
+		           
+		           
+	           } 
+		         
+		       function activateSection(e) {
+		       
+		       	
+		       		btns = query(".sidenav")
+		       		dojo.forEach(btns, function(item, i){
+		              domClass.remove(item,"btn-success");
+		            });
+		         
+			       domClass.add(this,"btn-success")
+			       
+			       cpv = this.getAttribute("data-content");
+			       
+			       pvs = query(".pageview")
+		       		dojo.forEach(pvs, function(item, i){
+		              domAttr.set(item, "style", "display:none");
+		            });
+		            
+		           outcpv = query("." + cpv)
+		           domAttr.set(outcpv[0], "style", "display:");
+		            
+			       
+		       }  
+            
+	            
+            });
+      
+      
+      
+ </script>
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body class="tundra">
+
+ 
+
+    <div class="container containerSmall">
+    
+    <div class="row" >
+    		 <div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 </div>
+    </div>
+    
+    <div class="row" id="Topper">
+  
+  
+    </div>
+    
+    <div class="row">
+
+    
+     </div>
+ 
+    </div>   
+    
+
+ 
+ 
+ 
+ 
+ </div>
+    
+ 
+ <div class="container containerSmall contentwall">    
+    
+         <div class="row">
+         
+         <div class="span3" style="padding-top:30px; padding-left:40px; width:250px">
+         <button class="btn btn-block btn-success sidenav" type="button" data-content="s1">Setting Stopover Conservation Goals</button>
+         <button class="btn btn-block sidenav" type="button" data-content="s2">Achieving goals<br> early adopters, and share your story</button>
+         <button class="btn btn-block sidenav" type="button" data-content="s3">Achieving goals in Ozaukee County, WI: From golf course to stopover site</button>	
+         <button class="btn btn-block sidenav" type="button" data-content="s4">Achieving goals at the DTE Energy Rouge River Power Plant: A migration oasis in the midst of an urban area</button>	
+         <button class="btn btn-block sidenav" type="button" data-content="s5">Achieving goals at Ottawa National Wildlife Refuge: Restoring agricultural lands to wetlands and woodlands</button>	
+         </div>
+         
+  <div class="span8" >
+         
+
+      <div class="homeHeader">
+
+<div id="addthis_home">    
+       <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50c25229684f669d"></script>
+<!-- AddThis Button END -->
+</div>
+
+   </div>
+
+   	 <div class="pageview s1">
+        <h4 class="text-info">Setting Stopover Conservation Goals</h4>
+         		<p>Although very challenging to establish, articulating conservation goals, based on scientific, operationally realistic, and objective criteria, provides a foundation for estimating the magnitude of work and financial resources needed to achieve conservation results.  Although goals are never perfect, they provide important guidelines to direct our work and, when accomplished, when to celebrate and when to focus resources on other conservation goals.</p>
+         		<p><strong>We (authors of the model shared in the interactive <a href='map.html'>map</a> and detailed in the <a href="download.html">project report</a>) have set goals for migrating landbirds in the Great Lakes region:  READERS, STAY TUNED FOR GOALS. </strong>
+         		</p>
+         		<p>The basis for this goal is that several studies, though not all, suggest that landbirds are more crowded, and gain less weight, where <15% of the landscape is in suitable habitat compared to landscapes with >15% of suitable habitat and especially with >40% suitable habitat.  We think that the scientific literature is sufficiently consistent to define this landscape feature, the amount of suitable landbird habitat within 5 km of a point, as an important attribute of landscapes that contribute to the health of migrating landbirds.  
+	         	<p> <strong>We have not yet set goals for shorebirds or waterfowl, as there is insufficient information for shorebirds and waterfowl to define criteria for establishing goals. </strong></p> 
+<p>More research will improve the specificity of these goals but we now, at least, have a specific conservation goal to measure our progress toward providing safe passage of landbirds through the Great Lakes region. </p>
+
+         
+   	 </div>
+   	 
+   	 <div class="pageview s2" style="display:none">
+        <h4 class="text-info">Achieving goals-early adopters, and share your story</h4>
+         		<p><strong>Achieving stopover conservation goals </strong></p>
+<p>Our models are new and ready to be used.  Earlier stopover models have already driven conservation work.   Exemplary projects include:
+<ol>
+ <li>Ozaukee County, Wisconsin, Forest Beach Preserve; </li>
+ <li>DTE Energy Rouge River Power Plant, Michigan; and </li>
+ <li>Ottawa National Wildlife Refuge, Ohio.   
+ </ol>
+ Each of these projects contributes to achieving landbird migration goals and will clearly benefit shorebirds and waterfowl as well because these sites are in important areas, identified through our model, for these other bird groups.
+</p>
+         		         
+   	 </div>
+
+   	 <div class="pageview s3" style="display:none">
+        <h4 class="text-info">Achieving goals in Ozaukee County, WI: From golf course to stopover site</h4>
+         		<p>The Ozaukee Washington Land Trust, working with many partners (NAME), including the Wisconsin Stopover Initiative, assembled the funds and expertise to convert a 46 ha (116 acre) golf course on Lake Michigan to forests, grasslands, and wetlands specifically for stopover habitat for migratory birds.   The county created good stopover habitat from non-suitable habitat to benefit the birds and the public, both of whom now have increased access to the Lake Michigan shore.  CLEAR WITH OZAUKEE LAND TRUST and add their contact info.</p>
+         		<p> INSERT PHOTO.</p>
+         
+   	 </div>
+
+   	 <div class="pageview s4" style="display:none">
+        <h4 class="text-info">Achieving goals at the DTE Energy Rouge River Power Plant: A migration oasis in the midst of an urban area</h4>
+         		<p>DTE Energy, a Michigan power company that services much of Michigan, recently installed many prairie plants, shrubs and trees at the Rouge River Power Plant along the Detroit River. This site now provides an oasis for birds in the midst of a highly industrialized and residential urban area during migration and at other times of the year, too. Savings are realized as well – there is less mowing to do and, as an extra benefit, fewer greenhouse gases released into the atmosphere.  At this site of 41 ha (105 acres), every spot that is not a building, coal pile, electrical substation, road or parking lot has been naturalized with native plants (trees, shrubs, grasses and wildflowers) to provide approximately 12 ha (30 acres) of habitat for migrating birds and other wildlife.</p>
+         		<p> INSERT PHOTO.</p>
+   	 </div>
+   	 
+   	 <div class="pageview s5" style="display:none">
+        <h4 class="text-info">Achieving goals at Ottawa National Wildlife Refuge: Restoring agricultural lands to wetlands and woodlands </h4>
+         		<p>Ottawa National Wildlife Refuge, on Lake Erie near Toledo, Ohio, is one of the premier stopover areas for migrating landbirds, shorebirds and waterfowl in the Great Lakes region and attracts birders from throughout the United States, Canada and Europe.  It is surrounded by agricultural land and nearby urban areas.  The refuge, working with Ducks Unlimited and The Nature Conservancy, recently restored, or in the process of restoring, approximately  550 ha (1,400 acres) of agricultural lands to wetlands and woodlands.  Waterfowl, shorebirds and landbirds will now have much more habitat to seek shelter and find food.   The project design also allows for more fish passage to wetlands where they spawn and may provide new habitat for endangered and threatened species.  The newly created habitat increases recreational opportunities such as hunting, fishing, and birding.  More restoration work is planned.  Add their contact info.    </p>
+         		<p> INSERT PHOTO.</p>
+   	 </div>
+   	 
+   	    	 
+         </div>
+         	      
+         
+         </div>
+         
+  
+     </div>
+   
+    </div>
+
+     <div class="container containerSmall" id="footer">
+     
+     <!-- <footer>
+        <p>&copy; The Nature Conservancy & The University of Southern Mississippi, 2012</p>
+      </footer> -->
+
+    </div> 
+
+     </div>
+     
+     
+<div class="modal fade" id="downloadModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="downloadModelTitle">Download</h3>
+  </div>
+  <div class="modal-body">
+  
+<div class="alert alert-info fade in" style="display:none" id="enabledownload">
+ <center> <strong>Thank you!</strong> You may now download the data here:</p>
+  
+ <button class="btn btn-primary" onclick="setTimeout(window.location = 'downloads/mbsh_data.zip', 100);">Download Data</button> &nbsp;&nbsp;&nbsp;  <button class="btn btn-primary" onclick="setTimeout(window.location = 'downloads/mbsh_model.zip', 100);">Download Model</button>  </center>
+  
+</div>  
+  
+  
+<div class="downloadcontent">
+    <p>
+	   <h4 class="text-info">What We Ask Of You:</h4>
+We ask that you PLEASE download and read the ReadMe files associated with this download.  It is embedded within the download as well as available as a separate file.  The ReadMe file contains essential information about these data and is vital for insuring they are used and interpreted correctly.
+</p>
+<p>
+Please cite the data as: COMING SOON
+</p>
+<p>
+If you have questions, please do not hesitate to contact us at <a href="mailto:michigan@tnc.org">michigan@tnc.org</a>.
+</p>
+    
+
+
+<div class="alert alert-warning">
+  <strong>Legal Disclosures </strong>
+The site is owned and copyrighted by The Nature Conservancy and controlled by the Terms of Use and Website Privacy Policy.  This website contains a compilation of data merely for informational purposes. The Nature Conservancy does not warrant or guarantee the quality of the content on this website.
+</div>
+ 
+<div class="alert alert-warning">
+  <strong>Data Use Constraint </strong>
+The Nature Conservancy shall not be held liable for improper or incorrect use of the data described and/or contained herein.  Any sale, distribution, loan, or offering for use of these digital data, in whole or in part, is prohibited without the approval of the Nature Conservancy.  The use of these data to produce other GIS products and services with the intent to sell for a profit is prohibited without the written consent of the Nature Conservancy.  All parties receiving these data must be informed of these restrictions.  The Nature Conservancy shall be acknowledged as data contributors to any reports or other products derived from these data.
+Registration is currently restricted.  Please email ? if you have questions.
+</div>   
+       
+  </div>
+</div>
+
+
+  <div class="modal-footer">
+    <button class="btn" id="closedisagree" data-dismiss="modal" aria-hidden="true"><strong>Disagree</strong></button>
+   <!-- <button class="btn disabled">Register</button> -->
+    <button class="btn btn-primary downloadcontent" onclick="enabledownload()"><strong>Agree</strong></button>
+    <!--<button class="btn disabled">Download</button> -->
+<br> <br> 
+    
+  </div>
+</div>
+
+
+
+
+  </body>
+</html>

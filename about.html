@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Migratory Birds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+    
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    
+    <link href="grmapper/css/grmapper.css" rel="stylesheet">
+    
+    <style type="text/css">
+       
+
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css" />
+    
+    
+    <script type="text/javascript">
+    
+    var locationstring = window.location.href;
+// replace() the trailing / with nothing, split on the remaining /, and pop off the last one
+	var result = /\/([^\/]*)$/.exec(locationstring)[1];
+
+    indy = window.location.href.indexOf(result)
+    
+    if (indy > 0) {
+    	apploc = window.location.href.slice(0,indy);
+    } else {
+	    
+	    apploc = window.location.href
+    }
+    
+    var dojoConfig = {
+    async: 1,
+    cacheBust: 1,
+    parseOnLoad: true,
+    packages: [
+        { name: "bootstrap", location: apploc + "/dojoBootstrap" },
+        { name: "grmapper", location: apploc + "/grmapper"}
+    ]
+    };
+    </script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.3"></script>
+    <script type="text/javascript">
+
+      
+      var map;
+      
+      var activatebyTitle;
+      
+      var downloaditems;
+      
+      var enabledownload;
+      
+      require([
+                "bootstrap/Alert",
+                "bootstrap/Button",
+                "bootstrap/Dropdown",
+                "grmapper/mbHeader",
+                "bootstrap/Modal",
+                "dojo/dom-class",
+                "dojo/dom-attr",
+                "dojo/query",
+                "dojo/ready",
+                "dojo/on",
+                "dojo/_base/lang",
+                "bootstrap/Tooltip",
+                "bootstrap/Popover",
+                "dojo/domReady!"
+            ], function (
+                Alert,
+            	bsButton,
+                Dropdown,
+                mbHeader,
+                Modal,
+                domClass,
+                domAttr,
+                query,
+                ready,
+                on,
+                lang,
+                Tooltip,
+                Popover
+            ) {
+	           
+	            
+	           ready(init) 
+	            
+	            
+	           function init() {
+	          
+		           	var topHeader = new mbHeader().placeAt("Topper");
+		            topHeader.startup();
+		           
+	           } 
+	            
+	            
+	            
+            });
+      
+      
+      
+ </script>
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body class="tundra">
+
+    <div class="container containerSmall">
+    
+    <div class="row" >
+    		 <div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 </div>
+    </div>
+    
+    <div class="row" id="Topper">
+  
+  
+    </div>
+    
+    <div class="row">
+    <!--
+              <div class="btn-group pull-right">
+	      		 <a class="btn dropdown-toggle btn-danger" data-toggle="dropdown" href="#">Unknown User <span class="caret"></span></a>
+	      		 	<ul class="dropdown-menu">
+		      		 	<li><a href="#">Login</a></li>
+		      		 	<li><a href="#">Register</a></li>
+		      		</ul>
+		      	</div>
+		      	
+		      	-->
+    
+     </div>
+ 
+    </div>   
+    
+ <div class="container containerTop"> 
+  
+      <div class="homeHeader">
+      
+      <h2 style="position:absolute;top:80px;left:700px;">About this study</h2>
+      
+
+<div id="addthis_home">    
+       <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50c25229684f669d"></script>
+<!-- AddThis Button END -->
+</div>
+
+      
+   </div>
+ 
+ </div>
+    
+ 
+ <div class="container contentw">        
+         <div class="row">
+         
+   <!--      <div class="span3">
+         <h4 class="text-info">Use the tabs above to navigate </h4>
+         
+            <p><strong>About:</strong>  Information on this project.</p>
+            <p><strong>Map:</strong>   Visually explore our results, get summary statistics, etc.</p>
+            <p><strong>Downloads:</strong>   Report, spatial data, metadata, user guide</p>
+            <p><strong>Resources:</strong>  Stopover bibliography & links to other useful sites & data sources</p>
+            <p><strong>FAQs:</strong>  Frequently asked questions about this portal and tips for using it, including ideas for getting the most out of the web mapper</p>
+            <!--<p><strong>Contact us (do we need a contact us page or can it just be in the footer?)</strong></p> 
+            <p><strong> <i>Want more help getting started?  Click the Help tab for suggestions based on your interests. </i></strong>
+            <p><strong>Already have a map saved?  Click here.</p></strong>
+            <p> For website content help or suggestions, technical problems or other questions about the site please contact <a href='mailto:michigan@tnc.org'>michigan@tnc.org</a>. </p>
+
+         </div>   -->
+         
+         <div class="span8" style="padding-left:10px">
+       
+         
+         <h5 class="text-success"> <i>What are stopover sites, and why do they need our attention? </i> </h5>
+        For migratory birds, stopover sites provide essential food resources during a part of the life-cycle when mortality may be high.  Stopover habitat has been neglected in many conservation efforts to protect migratory birds, in part because habitats are used for a short time and use can vary depending on many factors, such as weather conditions during migration.  The Great Lakes, particularly coastal and nearshore areas, provide globally important stopover sites for waterfowl, shorebirds, songbirds, hawks and owls and other waterbirds, such as loons.  Much of the Great Lakes coastal aquatic and terrestrial landscapes that once supported migrating birds has been lost or degraded, yet the region supports hundreds of millions of migrants during both spring and fall migration.    
+         
+         <h5 class="text-success"> <i>What we did:  </i> </h5>
+         <p>
+         The objective of this study was to identify and score attributes of areas that serve as important stopover sites for migratory birds within 25 km (15 miles) of the shorelines of Lakes Michigan, Huron, Erie, and Ontario, and connecting water bodies, in the US and Canada, and then map potential stopover habitats across the region based on available GIS data layers.  
+         </p>
+         <p>
+         The criteria used to predict locations of stopover sites are based on a literature review and unpublished information gained from reports and regional stopover experts.  (Published resources we used, plus many others, are available in the <a href='resources.html'>stopover bibliography</a>).  We identified attributes associated with stopover sites that could be mapped with regionally (US and Canada) available data layers, developed criteria to score these attributes, and then produced maps based on these scores to indicate the relative importance of stopover sites in our study area.   For complete methods, please see the methods section of the final report and/or the metadata, both available on the <a href='download.html'>Downloads</a> page. </p>
+         
+         <p>
+         To design this web portal, we studied a range of existing web portals and interactive web maps, not limited to those addressing natural resources.  Through this process we gathered a list of features related to design, content, and functionality that we thought were useful for building our web portal. We also sought input from a range of potential users via survey questionnaire regarding what content and functionality would be helpful to them. We then prioritized these lists of features via brainstorming and group decision making techniques to develop the prototype version of this web portal.  Finally we conducted a facilitated workshop with a small group of users to test the prototype and gather their feedback to further improve it. The feedback gathered via workshop was further prioritized via brainstorming and group decision making techniques to implement essential features, which has resulted in the current version of this web portal.
+         </p>
+
+         <h5 class="text-success"> <i>What we found:   </i> </h5>
+         Our analysis suggests that areas close to the Great Lakes shorelines are important stopover sites for all groups of birds, including landbirds, shorebirds and waterfowl.  Landbirds are most concentrated within a few miles of the shoreline, migrating waterfowl are most common in nearshore shallow waters of the Great Lakes, and a number of shorebirds use Great Lakes shorelines disproportionately to other habitats.  For all bird groups, relatively extensive areas of habitat seem to be used more than smaller areas of habitat except for landbirds where small areas of habitat surrounded by development harbor high densities of birds.  <strong>Check out the <a href='map.html'>Map</a> page to explore the results.</strong>  
+
+         <h5 class="text-success"> <i>Who was involved: </i> </h5>
+         The Nature Conservancy collaborated with the U.S. Fish and Wildlife Service, many conservation organizations, universities, and corporations to predict the relative importance of different areas as stopover sites near Lakes Michigan, Huron, Erie and Ontario and create this web portal.  The Upper Midwest and Great Lakes Conservation Cooperative of the U.S. Fish and Wildlife Service supported development of the predictive model and this website.  It is being served by…. (to be resolved). 
+         
+         <h5 class="text-success"> <i>What we plan to do next: </i> </h5>
+         Characterizing suitable stopover habitat and then making the information widely available are important initial steps toward conservation of migratory birds.  We will incorporate results from this study into other planning and implementation conservation efforts,  such as LaMPs and other basinwide planning projects (TNC’s blueprints), to ensure that the study is used to enhance survivorship of birds migrating through the Great Lakes region and the quality of life for residents of the Great Lakes region. 
+         
+         <h5 class="text-success"> <i>What we hope you will do next: </i> </h5>
+         Use our maps of predicted stopover sites, underlying data layers, and analysis tools to rank and compare stopover sites for conservation or restoration, and get help doing so.  Download our data predicting stopover habitat throughout the region, and find out more about how they were produced.  Tap into other resources needed to make conservation decisions, such as links to other relevant data sources for your area of interests and information on what other groups are working on.  See these maps and data in action and understand how others are using them.  And then add your story to our website by <a href="mailto:michigan@tnc.org">contacting us</a> to let us know how to link to your work on our Resources and/or Action pages.  Help us keep this portal current and vibrant by sharing your experiences and knowledge!  And please share this portal with others you think might find it useful.
+
+         <h5 class="text-success"> <i>Important things to keep in mind when using the maps:  </i> </h5>
+         When using maps produced with this project to identify potential stopover habitat, users should keep in mind the following:  1) the maps only take into account landscape variables that we incorporate within a GIS framework because fine detail about vegetation composition and structure were not available throughout the region, 2) there are errors in the land cover data bases used, 3) we used a minimum sized area of approximately 2.5 acres (1 ha) to describe habitat and so areas of habitat smaller than 2.5 acres may not be depicted in our maps, and 4) our maps emphasize distribution of spring migrants rather than fall migrants because more data were available to describe stopover sites used in spring compared to fall. 
+                           
+         <br><br>
+         
+          </div>
+          
+         <div class="span3" >
+
+	         
+	         <p style="padding-top:40px">Not what you were looking for?  Looking for information about this web portal and how to use it instead?  <a href='help.html'>Click here</a></p>
+	         
+	            <table width="200px">
+         		<tr>
+         		<td>
+         		<img src="resources/images/sidebarImages/CarolineLake.png" width="200px" />
+         		<div class="text-success"><small>Caroline Lake.  Good landbird stopover site.  &copy;TNC archives</small></div><br>
+         		</td>
+         		</tr>
+         		<tr>
+         		<td>
+         		<img src="resources/images/sidebarImages/ScarletTanager.png" width="200px" />
+         		<div class="text-success"><small>Scarlet Tanager. &copy;TNC archives</small></div><br>
+         		</td>
+         		</tr>
+         		<tr>
+         		<td>
+         		<img src="resources/images/sidebarImages/ForestBeachMigratoryPreserve.png" width="200px" />
+         		<div class="text-success"><small>Forest Beach Migratory Preserve, Wisconsin.  Photo credit: &copy;Kim Grveles</small></div><br>
+         		</td>
+         		</tr>
+         		<td>
+         		<img src="resources/images/sidebarImages/DTE_Energy.png" width="200px" />
+         		<div class="text-success"><small>DTE Energy.  Habitat creation for migrating landbirds at the River Rouge Power Plant along the Detroit River. &copy;TNC archives</small></div><br>
+         		</td>
+         		</tr>
+         		<td>
+         		<img src="resources/images/sidebarImages/OttawaNationalWildlifeRefuge.png" width="200px" />
+         		<div class="text-success"><small>Ottawa National Wildlife Refuge.  Habitat creation for waterfowl and shorebirds.  Photo credit: &copy;James Cole</small></div><br>
+         		</td>
+         		</tr>
+         		</table>
+
+
+         </div>
+         
+         
+       <!-- 
+         <div class="span3" >
+         	<center><h4 class="text-info"> <i>Updated Information</i> </h4></center>
+         	<center><h5 class="text-success"> <i>Great Lakes Region	</i> </h5></center>
+         	
+         	
+         	<small>
+         		Mounting evidence suggests that rising sea levels, coupled with related increases in storm surges, will increasingly put coastal populations at risk from inundation, storm damage, and saltwater intrusion. <strong>In order to adapt,</strong> decision-makers need access to information and tools that support choices for managing natural resources and protecting human communities. Without these resources, proactive solutions that reduce impacts and build resiliency for human and natural communities will remain elusive. </small>
+         		
+        
+         
+         </div>
+         
+         -->
+         	      
+         
+        
+         
+         
+         <div class="row">
+        
+            
+         </div>
+      
+     </div>
+   
+    </div>
+
+     <div class="container containerSmall" id="footer">
+
+    </div> 
+
+     </div>
+
+  </body>
+</html>

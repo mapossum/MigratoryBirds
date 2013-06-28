@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Migratory Birds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+    
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    
+    <link href="grmapper/css/grmapper.css" rel="stylesheet">
+    
+    <style type="text/css">	
+	 
+	 /*a:link { text-decoration: none !important;
+		 	  text-transform: uppercase !important;
+	 }*/
+
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css" />
+    
+    
+    <script type="text/javascript">
+    
+    var locationstring = window.location.href;
+// replace() the trailing / with nothing, split on the remaining /, and pop off the last one
+	var result = /\/([^\/]*)$/.exec(locationstring)[1];
+
+    indy = window.location.href.indexOf(result)
+    
+    if (indy > 0) {
+    	apploc = window.location.href.slice(0,indy);
+    } else {
+	    
+	    apploc = window.location.href
+    }
+    
+    var dojoConfig = {
+    async: 1,
+    cacheBust: 1,
+    parseOnLoad: true,
+    packages: [
+        { name: "bootstrap", location: apploc + "/dojoBootstrap" },
+        { name: "grmapper", location: apploc + "/grmapper"}
+    ]
+    };
+    </script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.3"></script>
+    <script type="text/javascript">
+
+      
+      var map;
+      
+      var activatebyTitle;
+      
+      var downloaditems;
+      
+      var enabledownload;
+      
+      require([
+                "bootstrap/Alert",
+                "bootstrap/Button",
+                "bootstrap/Dropdown",
+                "grmapper/mbHeader",
+                "bootstrap/Modal",
+                "dojo/dom-class",
+                "dojo/dom-attr",
+                "dojo/query",
+                "dojo/ready",
+                "dojo/on",
+                "dojo/_base/lang",
+                "bootstrap/Tooltip",
+                "bootstrap/Popover",
+                "dojo/domReady!"
+            ], function (
+                Alert,
+            	bsButton,
+                Dropdown,
+                mbHeader,
+                Modal,
+                domClass,
+                domAttr,
+                query,
+                ready,
+                on,
+                lang,
+                Tooltip,
+                Popover
+            ) {
+	           
+	            
+	           ready(init) 
+	            
+	            
+	           function init() {
+	          
+		           	var topHeader = new mbHeader().placeAt("Topper");
+		            topHeader.startup();
+		           
+	           } 
+	            
+	            
+	            
+            });
+      
+      
+      
+ </script>
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body class="tundra">
+
+    <div class="container containerSmall">
+    
+    <div class="row" >
+    		 <div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 </div>
+    </div>
+    
+    <div class="row" id="Topper">
+  
+  
+    </div>
+    
+    <div class="row">
+    <!--
+              <div class="btn-group pull-right">
+	      		 <a class="btn dropdown-toggle btn-danger" data-toggle="dropdown" href="#">Unknown User <span class="caret"></span></a>
+	      		 	<ul class="dropdown-menu">
+		      		 	<li><a href="#">Login</a></li>
+		      		 	<li><a href="#">Register</a></li>
+		      		</ul>
+		      	</div>
+		      	
+		      	-->
+    
+     </div>
+ 
+    </div>   
+    
+ <div class="container containerTop"> 
+  
+      <div class="homeHeader">
+      
+      <h2 style="position:absolute;top:50px;left:700px;">Stopover habitat <br> near the <br> Great Lakes coast.</h2>
+      
+
+<div id="addthis_home">    
+       <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50c25229684f669d"></script>
+<!-- AddThis Button END -->
+</div>
+
+      
+   </div>
+ 
+ </div>
+    
+ 
+ <div class="container contentw">        
+         <div class="row">
+         
+   <!--      <div class="span3">
+         <h4 class="text-info">Use the tabs above to navigate </h4>
+         
+            <p><strong>About:</strong>  Information on this project.</p>
+            <p><strong>Map:</strong>   Visually explore our results, get summary statistics, etc.</p>
+            <p><strong>Downloads:</strong>   Report, spatial data, metadata, user guide</p>
+            <p><strong>Resources:</strong>  Stopover bibliography & links to other useful sites & data sources</p>
+            <p><strong>FAQs:</strong>  Frequently asked questions about this portal and tips for using it, including ideas for getting the most out of the web mapper</p>
+            <!--<p><strong>Contact us (do we need a contact us page or can it just be in the footer?)</strong></p> 
+            <p><strong> <i>Want more help getting started?  Click the Help tab for suggestions based on your interests. </i></strong>
+            <p><strong>Already have a map saved?  Click here.</p></strong>
+            <p> For website content help or suggestions, technical problems or other questions about the site please contact <a href='mailto:michigan@tnc.org'>michigan@tnc.org</a>. </p>
+
+         </div>   -->
+         
+         <div class="span8" style="padding-left:10px">
+         
+         <h2 class="text-info"> Welcome! </h2>  
+         <h4> We’ve designed this Great Lakes migratory bird stopover web site to further conservation efforts for migrating birds in the Great Lakes region. </h4>  
+         
+         We hope that this portal can provide information on stopover sites and ecology within the Great Lakes region to a variety of audiences, including natural resource managers, municipal planners, entities siting energy installations and other infrastructure, and even businesses interested in seeing where migratory birds and the birders they attract might be concentrated.
+        
+        
+         <h5 class="text-success"> <i>You can use this website to:    </i> </h5>            
+         <ul>
+         <li>
+         Check out <a href="map.html">maps</a> of predicted stopover sites within approximately 20 miles of Great Lakes shorelines*; Click here for help on the map page.</li>
+         <li>
+         Use these maps, underlying data layers, and analysis tools to rank, compare, and/or prioritize stopover sites for conservation or restoration, and get <a href="help.html">help</a> doing so;
+         </li>
+         <li>
+         <a href="download.html">Download</a> data predicting stopover habitat throughout the region, and find out more about how they were produced;
+         </li>
+         <li>
+         See these maps and data in <a href="action.html">action</a> and understand how others are using them;
+         </li>
+         <li>
+         Tap into other <a href="resources.html">resources</a> needed to make conservation decisions, such as links to other relevant data sources for your area of interests and information on what other groups are working on.
+         </li>
+         <li>
+         Find out more about stopover sites, migratory bird ecology, conservation efforts throughout the region, and how you can get involved through links and references on the <a href="resources.html">Resources</a> page!
+         </li>
+         </ul>
+         
+         <h5 class="text-success"> <i>What are stopover sites?  </i> </h5>
+        Stopover sites are places where migrating birds stop to rest, refuel and seek shelter en route between breeding and wintering areas.  
+         
+         <h5 class="text-success"> <i>Why do they need to be conserved?  </i> </h5>
+         Mortality of birds during migration is high, and particularly in the central part of the United States, there are fewer and fewer places with remaining natural habitat in good condition that can shelter and fuel these birds during this vulnerable period.    
+
+         <h5 class="text-success"> <i>Where is the stopover habitat within the Great Lakes region? </i> </h5>
+         Migratory birds, including landbirds, shorebirds, and waterfowl, are most concentrated at food rich sites close to Great Lakes shorelines.  For landbirds, Great Lakes shorelines are “fallout” areas, areas where birds seek immediate refuge after encountering one of the Great Lakes.   
+
+         <h5 class="text-success"> <i>How can stopover sites be protected/conserved? </i> </h5>
+         Stopover sites can be protected directly through fee acquisition, conservation easements, managing land that favors migrant use and provides good feeding sites, and indirectly by land use regulations and voluntary land management recommendations. 
+         <br><br>
+         <div>*except Lake Superior, where stopover sites are poorly known and less threatened</div>  
+         
+         </div>
+         
+         <div class="span3" style="padding-top:20px">
+         		<p>Use the tabs above to navigate the site.</p>
+         		<p>Check out this tutorial or click the <a href="help.html">Help</a> tab for suggestions based on your interests.
+         		COMING SOON-NOT ACTIVE YET</p>
+         		<p>Already have a map saved?  <a href="map.html">Click here</a>.</p>
+         		<p>For website content help or suggestions, technical problems or other questions about the site please contact <a href="mailto:michigan@tnc.org">michigan@tnc.org</a>.</p>
+         		
+         		
+         		<table width="200px">
+         		<tr>
+         		<td>
+         		<img src="resources/images/sidebarImages/CarolineLake.png" width="200px">
+         		<div class="text-success"><small>Caroline Lake.  Good landbird stopover site.  &copy;TNC archives</small></div><br>
+         		</td>
+         		</tr>
+         		<tr>
+         		<td>
+         		<img src="resources/images/sidebarImages/ScarletTanager.png" width="200">
+         		<div class="text-success"><small>Scarlet Tanager. &copy;TNC archives</small></div><br>
+         		</td>
+         		</tr>
+         		<tr>
+         		<td>
+         		<img src="resources/images/sidebarImages/OttawaNationalWildlifeRefuge.png" width="200">
+         		<div class="text-success"><small>Ottawa National Wildlife Refuge.  Habitat creation for waterfowl and shorebirds.  Photo credit: &copy;James Cole</small></div><br>
+         		</td>
+         		</tr>
+         		</table>
+         		
+         </div>
+         
+       <!--  
+         <div class="span3" >
+         	<center><h4 class="text-info"> <i>Updated Information</i> </h4></center>
+         	<center><h5 class="text-success"> <i>Great Lakes Region	</i> </h5></center>
+         	
+         	
+         	<small>
+         		Mounting evidence suggests that rising sea levels, coupled with related increases in storm surges, will increasingly put coastal populations at risk from inundation, storm damage, and saltwater intrusion. <strong>In order to adapt,</strong> decision-makers need access to information and tools that support choices for managing natural resources and protecting human communities. Without these resources, proactive solutions that reduce impacts and build resiliency for human and natural communities will remain elusive. </small>
+         		
+        
+         
+         </div>
+         
+         -->
+         	      
+         
+         </div>
+         
+         
+         <div class="row">
+        
+            
+         </div>
+      
+     </div>
+   
+    </div>
+
+     <div class="container containerSmall" id="footer">
+     
+     <!-- <footer>
+        <p>&copy; The Nature Conservancy & The University of Southern Mississippi, 2012</p>
+      </footer> -->
+
+    </div> 
+
+     </div>
+
+  </body>
+</html>

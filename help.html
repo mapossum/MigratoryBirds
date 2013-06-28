@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Migratory Birds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+    
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    
+    <link href="grmapper/css/grmapper.css" rel="stylesheet">
+    
+    <style type="text/css">
+      	
+	 
+	 /*a:link { text-decoration: none !important;
+		 	  text-transform: uppercase !important;
+	 }*/
+
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css" />
+    
+    
+    <script type="text/javascript">
+    
+    var locationstring = window.location.href;
+// replace() the trailing / with nothing, split on the remaining /, and pop off the last one
+	var result = /\/([^\/]*)$/.exec(locationstring)[1];
+
+    indy = window.location.href.indexOf(result)
+    
+    if (indy > 0) {
+    	apploc = window.location.href.slice(0,indy);
+    } else {
+	    
+	    apploc = window.location.href
+    }
+    
+    var dojoConfig = {
+    async: 1,
+    cacheBust: 1,
+    parseOnLoad: true,
+    packages: [
+        { name: "bootstrap", location: apploc + "/dojoBootstrap" },
+        { name: "grmapper", location: apploc + "/grmapper"}
+    ]
+    };
+    </script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.3"></script>
+    <script type="text/javascript">
+
+      
+      var map;
+      
+      var activatebyTitle;
+      
+      var downloaditems;
+      
+      var enabledownload;
+      
+      require([
+                "bootstrap/Alert",
+                "bootstrap/Button",
+                "bootstrap/Dropdown",
+                "grmapper/mbHeader",
+                "bootstrap/Modal",
+                "dojo/dom-class",
+                "dojo/dom-attr",
+                "dojo/query",
+                "dojo/ready",
+                "dojo/on",
+                "dojo/_base/lang",
+                "bootstrap/Tooltip",
+                "bootstrap/Popover",
+                "dojo/domReady!"
+            ], function (
+                Alert,
+            	bsButton,
+                Dropdown,
+                mbHeader,
+                Modal,
+                domClass,
+                domAttr,
+                query,
+                ready,
+                on,
+                lang,
+                Tooltip,
+                Popover
+            ) {
+	           
+
+	            
+	           ready(init) 
+	            
+	     
+	           function init() {
+	           
+	           
+	           			           
+	           	var topHeader = new mbHeader().placeAt("Topper");
+		        topHeader.startup();
+	          
+		           
+		           btns = query(".sidenav")//.onclick(function(e){alert(e)})
+		           
+		           dojo.forEach(btns, function(item, i){
+		             on(item, "click", activateSection); 
+		           });
+		         
+		         
+		         
+		       function activateSection(e) {
+		       
+		       		
+		       		btns = query(".sidenav")
+		       		dojo.forEach(btns, function(item, i){
+		              domClass.remove(item,"btn-success");
+		            });
+		         
+			       domClass.add(this,"btn-success")
+			       
+			       cpv = this.title;
+			       
+			       
+			       pvs = query(".pageview")
+		       		dojo.forEach(pvs, function(item, i){
+		              domAttr.set(item, "style", "display:none");
+		            });
+		            
+		           outcpv = query("." + cpv)
+		           domAttr.set(outcpv[0], "style", "display:");
+		            
+			       
+		       }  
+		           
+		           
+	           } 
+	            
+	
+            
+	            
+            });
+      
+      
+      
+ </script>
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body class="tundra">
+
+ 
+
+    <div class="container containerSmall">
+    
+    <div class="row" >
+    		 <div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 </div>
+    </div>
+    
+    <div class="row" id="Topper">
+  
+  
+    </div>
+        
+    <div class="row">
+
+    
+     </div>
+ 
+    </div>   
+    
+
+ 
+ 
+ 
+ 
+ </div>
+    
+ 
+ <div class="container containerSmall contentwall">    
+    
+         <div class="row">
+         
+         <div class="span3" style="padding-top:30px; padding-left:40px; width:250px">
+         <button class="btn btn-block btn-success sidenav" type="button" title="s1">Getting Started Using the Portal</button>
+         <button class="btn btn-block sidenav" type="button" title="s2">How to Use the Map & Map Tools</button>
+         <button class="btn btn-block sidenav" type="button" title="s3">FAQs</button>	
+         <button class="btn btn-block sidenav" type="button" title="s4">Contact Us</button>	
+         
+         </div>
+         
+  <div class="span8" >
+         
+
+      <div class="homeHeader">
+
+<div id="addthis_home">    
+       <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50c25229684f669d"></script>
+<!-- AddThis Button END -->
+</div>
+
+   </div>
+
+   	 <div class="pageview s1">
+        <h4 class="text-info">Getting Started Using the Portal</h4>
+        <p>Stay tuned…materials prepared for and feedback provided at the March workshop will be shared here.</p>
+   	 </div>
+   	 
+   	 <div class="pageview s2" style="display:none">
+        <h4 class="text-info">How to Use the Map & Map Tools</h4>
+        <p>Download the user guide for the map and map tools <a href='resources/UserGuideMapInterface.pdf' target='_blank'>here</a>.</p>        
+   	 </div>
+
+   	 <div class="pageview s3" style="display:none">
+        <h4 class="text-info">FAQs</h4>
+         		<p>Stay tuned…materials prepared for and feedback provided at the March workshop will be shared here.</p>
+         
+   	 </div>
+   	 
+   	 <div class="pageview s4" style="display:none">
+        <h4 class="text-info">Contact Us</h4>
+         		<p>Please contact us at <a href='mailto:michigan@tnc.org'>michigan@tnc.org</a> with any questions or suggestions!</p>
+         
+   	 </div>
+   	 
+         </div>
+         	      
+         
+         </div>
+         
+  
+     </div>
+   
+    </div>
+
+     <div class="container containerSmall" id="footer">
+     
+     <!-- <footer>
+        <p>&copy; The Nature Conservancy & The University of Southern Mississippi, 2012</p>
+      </footer> -->
+
+    </div> 
+
+     </div>
+
+
+
+  </body>
+</html>

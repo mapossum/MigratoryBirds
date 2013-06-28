@@ -1,0 +1,1215 @@
+<div>
+    
+    <div>  <!-- class="step step-result" --> 
+    
+    <div class="row"> <div class="span11">
+      <div class="badge badge-inverse">Results Report</div>
+      <br>
+      <br>
+      <div class="alert alert-error fade in">
+	      <button type="button" class="close" data-dismiss="alert">&times;</button>
+	      <strong>Note:</strong> Darker color on each chart represents protected areas.
+      </div>
+      
+      <div class="alert alert-info fade in modelResults" style="display:none;">
+      	Scores represent.... 5 is highest meaning the best habitat while 1 is lowest meaning poor habitat.
+      </div>
+      
+	  <div class="span11 habitatResults" style="display:none;">
+		<h4> Habitat Value Key </h4>     
+		<table class="table table-bordered" style="width:100%; background-color:#fff">
+		<tr>
+		<td style="width:33%;" class="warning"> <strong>Shorebird Values</strong> </td>
+		<td style="width:33%;" class="info"> <strong>Waterfowl Values</strong> </td>
+		<td style="width:33%;" class="error"> <strong>Landbird Values</strong> </td>
+		</tr>
+		<tr>
+		<td style="width:33%;"> 1 – Emergent wetlands<br>0.5 – Agricultural fields with hydric soils<br> 0.25 – Beach<br>0 represents <i>other</i> areas (not suitable)</td>
+		<td style="width:33%;"> 1 – Mixed emergent marsh adjacent to open water<br>0.75 – Emergent marsh or open water, not adjacent<br>0.25 – Palustrine forested wetlands or agricultural fields with hydric soils<br>0 represents <i>other</i> areas (not suitable)</td>
+		<td style="width:33%;"> 1 – Natural vegetated landcover<br>0.5 – Hay/pasture, palustrine wetlands, urban with high canopy cover<br>0 represents <i>other</i> areas (not suitable)</td>
+		</tr>
+		</table>
+	  </div>
+    </div></div>
+ 
+    
+ <div class="row"> 
+
+ <div class="span11" style="width:1130px">
+    
+  <table border="0" style="width:1130px">
+   
+	<tr>
+	<td style="width:50%;" class="sideTitle leftSide"><h3>Area 1 <small>(Yellow)</small></h3></td>
+	<td style="width:50%;" class="sideTitle rightSide"><h3>Area 2 <small>(Cyan)</small></h3></td>
+	</tr>   
+
+	<tr>
+	<td style="width:50%;">
+	   <h5> Associated Layers <small> <br>Check to toggle visibility</small></h5> 
+      <label class="checkbox inputareacheck leftSide"><input> Input Area </label>     
+	</td>
+	<td style="width:50%;">
+       <h5> Associated Layers <small> <br>Check to toggle visibility</small></h5> 
+       <label class="checkbox inputareacheck rightSide"><input> Input Area </label>    
+	</tr>  
+  
+  </table>
+
+<div class="modelResults" style="display:none;">
+  
+  <table border="0" style="width:1130px">
+	<tr>
+	<td style="width:50%;">     <h4>Land Cover Summary Chart </h4>  
+	     	<div class="LandCoverSummary leftSide"></div></td>
+	<td style="width:50%;">     <h4>Land Cover Summary Chart </h4>  
+	     	<div class="LandCoverSummary rightSide"></div></td>	
+	</tr> 
+
+	<tr>    	
+	<td style="width:50%;">     <h4>Natural Land Cover Chart </h4> 
+	     	<div class="NaturalLandCoverChart leftSide"></div></td>
+	<td style="width:50%;">     <h4>Natural Land Cover Chart </h4> 
+	     	<div class="NaturalLandCoverChart rightSide"></div></td>
+	</tr>
+	
+	<tr>    	
+	<td style="width:50%;">     <h4>Shorebirds Score Summary Chart </h4> 
+     	<div class="ShoreBirdSummary leftSide"></div></td>
+	<td style="width:50%;">     <h4>Shorebirds Score Summary Chart </h4> 
+     	<div class="ShoreBirdSummary rightSide"></div></td>
+	</tr>	
+
+	<tr>    	
+	<td style="width:50%;">     <h4>Waterfowl Score Summary Chart </h4> 
+     	<div class="WaterBirdSummary leftSide"></div></td>
+	<td style="width:50%;">     <h4>Waterfowl Score Summary Chart </h4> 
+     	<div class="WaterBirdSummary rightSide"></div></td>
+	</tr>	
+
+	<tr>    	
+	<td style="width:50%;">     <h4>Landbirds Score Summary Chart </h4> 
+     	<div class="LandBirdSummary leftSide"></div></td>
+	<td style="width:50%;">     <h4>Landbirds Score Summary Chart </h4> 
+     	<div class="LandBirdSummary rightSide"></div></td>
+	</tr>		
+
+	  <tr>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter warning">Shorebirds</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Score</td>
+				
+				<td colspan="1" class="tableCenter arealab warning">Area (Ha)</td>
+				<td colspan="1" class="tableCenter warning">% of Total</td>
+				<td colspan="1" class="tableCenter warning">Cumulative %</td>
+				<td colspan="1" class="tableCenter warning">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">5</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">4</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp leftSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">3</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">2</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>			
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter warning">Shorebirds</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Score</td>
+				
+				<td colspan="1" class="tableCenter arealab warning">Area (Ha)</td>
+				<td colspan="1" class="tableCenter warning">% of Total</td>
+				<td colspan="1" class="tableCenter warning">Cumulative %</td>
+				<td colspan="1" class="tableCenter warning">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">5</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">4</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp rightSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">3</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">2</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>			
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	 
+	  </tr>   
+
+	  <tr>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter info">Waterfowl</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Value</td>
+				
+				<td colspan="1" class="tableCenter arealab info">Area (Ha)</td>
+				<td colspan="1" class="tableCenter info">% of Total</td>
+				<td colspan="1" class="tableCenter info">Cumulative %</td>
+				<td colspan="1" class="tableCenter info">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">5</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">4</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp leftSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">3</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">2</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>			
+
+		 </tbody>
+		
+		</table> 
+	   </td>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter info">Waterfowl</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Value</td>
+				
+				<td colspan="1" class="tableCenter arealab info">Area (Ha)</td>
+				<td colspan="1" class="tableCenter info">% of Total</td>
+				<td colspan="1" class="tableCenter info">Cumulative %</td>
+				<td colspan="1" class="tableCenter info">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">5</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">4</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp rightSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">3</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">2</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>	
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	 
+	  </tr>   
+
+
+	  <tr>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter error">Landbirds</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Value</td>
+				
+				<td colspan="1" class="tableCenter arealab error">Area (Ha)</td>
+				<td colspan="1" class="tableCenter error">% of Total</td>
+				<td colspan="1" class="tableCenter error">Cumulative %</td>
+				<td colspan="1" class="tableCenter error">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">5</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">4</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp leftSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">3</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">2</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp leftSide"></td>
+				
+			</tr>
+		
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter error">Landbirds</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Value</td>
+				
+				<td colspan="1" class="tableCenter arealab error">Area (Ha)</td>
+				<td colspan="1" class="tableCenter error">% of Total</td>
+				<td colspan="1" class="tableCenter error">Cumulative %</td>
+				<td colspan="1" class="tableCenter error">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">5</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">4</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp rightSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">3</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">2</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryTable percentp rightSide"></td>
+				
+			</tr>
+			
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	 
+	  </tr>  
+
+
+
+  </table>
+  
+  
+</div>
+
+
+
+<div class="habitatResults" style="display:none;">
+  
+  <table border="0" style="width:1130px">
+  	
+	<tr>    	
+	<td style="width:50%;">     <h4>Shorebirds Habitat Summary Chart </h4> 
+     	<div class="ShoreBirdHabitatSummary leftSide"></div></td>
+	<td style="width:50%;">     <h4>Shorebirds Habitat Summary Chart </h4> 
+     	<div class="ShoreBirdHabitatSummary rightSide"></div></td>
+	</tr>	
+
+	<tr>    	
+	<td style="width:50%;">     <h4>Waterfowl Habitat Summary Chart </h4> 
+     	<div class="WaterBirdHabitatSummary leftSide"></div></td>
+	<td style="width:50%;">     <h4>Waterfowl Habitat Summary Chart </h4> 
+     	<div class="WaterBirdHabitatSummary rightSide"></div></td>
+	</tr>	
+
+	<tr>    	
+	<td style="width:50%;">     <h4>Landbirds Habitat Summary Chart </h4> 
+     	<div class="LandBirdHabitatSummary leftSide"></div></td>
+	<td style="width:50%;">     <h4>Landbirds Habitat Summary Chart </h4> 
+     	<div class="LandBirdHabitatSummary rightSide"></div></td>
+	</tr>	
+	
+	  <tr>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter warning">Shorebirds</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Value</td>
+				
+				<td colspan="1" class="tableCenter arealab warning">Area (Ha)</td>
+				<td colspan="1" class="tableCenter warning">% of Total</td>
+				<td colspan="1" class="tableCenter warning">Cumulative %</td>
+				<td colspan="1" class="tableCenter warning">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable percentp leftSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0.5</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable percentp leftSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">0.25</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable percentp leftSide"></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable percentp leftSide"></td>
+				
+			</tr>
+			
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter warning">Shorebirds</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Value</td>
+				
+				<td colspan="1" class="tableCenter arealab warning">Area (Ha)</td>
+				<td colspan="1" class="tableCenter warning">% of Total</td>
+				<td colspan="1" class="tableCenter warning">Cumulative %</td>
+				<td colspan="1" class="tableCenter warning">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable percentp rightSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0.5</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable percentp rightSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">0.25</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable percentp rightSide"></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter ShoreBirdSummaryHTable percentp rightSide"></td>
+				
+			</tr>
+			
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	 
+	  </tr>   
+
+	  <tr>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter info">Waterfowl</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Value</td>
+				
+				<td colspan="1" class="tableCenter arealab info">Area (Ha)</td>
+				<td colspan="1" class="tableCenter info">% of Total</td>
+				<td colspan="1" class="tableCenter info">Cumulative %</td>
+				<td colspan="1" class="tableCenter info">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable percentp leftSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0.75</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable percentp leftSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">0.25</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable percentp leftSide"></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable percentp leftSide"></td>
+				
+			</tr>
+			
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter info">Waterfowl</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Value</td>
+				
+				<td colspan="1" class="tableCenter arealab info">Area (Ha)</td>
+				<td colspan="1" class="tableCenter info">% of Total</td>
+				<td colspan="1" class="tableCenter info">Cumulative %</td>
+				<td colspan="1" class="tableCenter info">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable percentp rightSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0.75</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable percentp rightSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">0.25</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable percentp rightSide"></td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter WaterBirdSummaryHTable percentp rightSide"></td>
+				
+			</tr>
+			
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	 
+	  </tr>   
+
+
+	  <tr>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter error">Landbirds</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Value</td>
+				
+				<td colspan="1" class="tableCenter arealab error">Area (Ha)</td>
+				<td colspan="1" class="tableCenter error">% of Total</td>
+				<td colspan="1" class="tableCenter error">Cumulative %</td>
+				<td colspan="1" class="tableCenter error">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable percentp leftSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0.05</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable percentp leftSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable totarea leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable poftotal leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable cpercent leftSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable percentp leftSide"></td>
+				
+			</tr>
+		
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	   <td style="width:50%;">
+		<table class="table table-bordered" style="width:100%; background-color:#fff;">
+		 <thead>
+			<tr>
+				<th colspan="1" class="tableCenter"></th>
+				<th colspan="4" class="tableCenter error">Landbirds</th>
+			</tr>
+		 </thead>
+		
+		 <tbody class="smallerText">
+			<tr>
+				<td colspan="1" class="success">Value</td>
+				
+				<td colspan="1" class="tableCenter arealab error">Area (Ha)</td>
+				<td colspan="1" class="tableCenter error">% of Total</td>
+				<td colspan="1" class="tableCenter error">Cumulative %</td>
+				<td colspan="1" class="tableCenter error">% Protected</td>
+				
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">1</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable percentp rightSide"></td>
+				
+			</tr>
+			
+			<tr>
+				<td colspan="1" class="tableCenter">0.05</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable percentp rightSide"></td>
+		
+			</tr>
+		
+			<tr>
+				<td colspan="1" class="tableCenter">0</td>
+				
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable totarea rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable poftotal rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable cpercent rightSide"></td>
+				<td colspan="1" class="tableCenter LandBirdSummaryHTable percentp rightSide"></td>
+				
+			</tr>
+			
+			
+		 </tbody>
+		
+		</table> 
+	   </td>
+	 
+	  </tr>  
+
+	  
+  </table> 
+
+ </div>
+         
+</div>  
+
+</div>
+
+<!--
+
+
+
+
+<div class="row modelResults" style="display:none;"> 
+    
+    	<div class="span11" style="width:1130px">
+
+<table class="table table-bordered" style="width:100%; background-color:#fff">
+ <thead>
+	<tr>
+		<th colspan="1" class="tableCenter"></th>
+		<th colspan="4" class="tableCenter warning">Shorebirds</th>
+		<th colspan="4" class="tableCenter info">Waterfowl</th>
+		<th colspan="4" class="tableCenter error"><center>Landbirds</center></th>
+	</tr>
+ </thead>
+
+ <tbody class="smallerText">
+	<tr>
+		<td colspan="1" class="success">Score</td>
+		
+		<td colspan="1" class="tableCenter arealab warning">Area (Ha)</td>
+		<td colspan="1" class="tableCenter warning">% of Total</td>
+		<td colspan="1" class="tableCenter warning">Cumulative %</td>
+		<td colspan="1" class="tableCenter warning">% Protected</td>
+		
+		<td colspan="1" class="tableCenter arealab info">Area (Ha)</td>
+		<td colspan="1" class="tableCenter info">% of Total</td>
+		<td colspan="1" class="tableCenter info">Cumulative %</td>
+		<td colspan="1" class="tableCenter info">% Protected</td>
+		
+		<td colspan="1" class="tableCenter arealab error">Area (Ha)</td>
+		<td colspan="1" class="tableCenter error">% of Total</td>
+		<td colspan="1" class="tableCenter error">Cumulative %</td>
+		<td colspan="1" class="tableCenter error">% Protected</td>
+	</tr>
+
+	<tr>
+		<td colspan="1" class="tableCenter">5</td>
+		
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter LandBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable percentp"></td>
+	</tr>
+	
+	<tr>
+		<td colspan="1" class="tableCenter">4</td>
+		
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter LandBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable percentp"></td>
+	</tr>
+
+	<tr>
+		<td colspan="1" class="tableCenter">3</td>
+		
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter LandBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable percentp"></td>
+	</tr>
+
+	<tr>
+		<td colspan="1" class="tableCenter">2</td>
+		
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter LandBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable percentp"></td>
+	</tr>
+
+	<tr>
+		<td colspan="1" class="tableCenter">1</td>
+		
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter LandBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable percentp"></td>
+	</tr>	
+	
+	<tr>
+		<td colspan="1" class="tableCenter">0</td>
+		
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter ShoreBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter WaterBirdSummaryTable percentp"></td>
+		
+		<td colspan="1" class="tableCenter LandBirdSummaryTable totarea"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable poftotal"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable cpercent"></td>
+		<td colspan="1" class="tableCenter LandBirdSummaryTable percentp"></td>
+	</tr>	
+	
+	
+ </tbody>
+
+</table>   	
+    	
+</div>
+    
+</div>
+
+-->
+    
+
+
+
+</div>
+
+</div>   
+    
+
+
+

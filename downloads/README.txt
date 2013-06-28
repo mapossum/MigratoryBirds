@@ -1,0 +1,15 @@
+http://maps.usm.edu/migratorybirds/download.html
+
+Model Output Data Text
+
+This project was conducted using the most current publicly available data that provide approximately equivalent coverage across the entire study area, which is the land surrounding Lakes Michigan, Huron, Erie and Ontario and connecting waters. This includes parts of seven US states (Wisconsin, Illinois, Indiana, Michigan, Ohio, Pennsylvania and New York) and the Canadian province of Ontario, extending over 1000 km east to west and over 600 km north to south. Developing conforming data across the national boundary was a significant challenge. While we were able to develop GIS layers which were analogous for both sides of the international border, their ages, scales, formats, and resolutions were different.
+
+As was done in similar studies previously, migratory birds were divided into three groups: landbirds (including raptors), shorebirds, and waterfowl. Landscape characteristics or attributes considered to be of importance to each of these bird groups were developed, with the understanding that these attributes needed to be framed in way that allowed them to be depicted and analyzed with currently available GIS and data. While this may have reduced the resolution or specificity of some of the attributes, the analysis involved remained complex
+
+Once the attributes of importance to the bird groups were developed (e.g. distance from shore) they were assigned a value based on their meeting certain criteria. For each bird group up to 5 attributes were developed, each of which was assigned a score from 0 to 1. The scores for each attribute for each bird group were summed and a final attribute score ranging from 0 (low) to 5 (high) was produced. Thus it is possible to identify those areas best matching the profile of high value to migratory birds by determining which areas scored highest.
+
+To better match the scale of the analyses to areas of habitat likely to be meaningful in the context of bird conservation, the entire project was carried out with 100m pixels using the Great Lakes Albers (NAD 1983) projection.
+
+http://maps.usm.edu/migratorybirds/download.html
+
+The analysis was carried out entirely in ESRI ArcGIS 10. The  ArcGIS ModelBuilder files are included with the data distributed with this report. The ModelBuiler files provide the step-by-step methods and settings used in this project.  While reference is made to the commands and functions as named in ArcMap, substantially similar functionality is available in many currently available GIS software distributions. The data used in this analysis is widely available, public, and free; the exceptions being the ESRI Maps and Data files depicting the roads and the Great Lakes shorelines. In both cases the ESRI data is a proprietary, processed version of public data sources. It should be possible to reproduce this analysis even without access to the ESRI data by using those public sources. The Read Me file contains further detailed information about the data used, its origins, and how it was prepared.

@@ -1,0 +1,865 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Migratory Birds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+    
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    
+    <link href="grmapper/css/grmapper.css" rel="stylesheet">
+    <link href="css/mbmain.css" rel="stylesheet">
+    
+    <style type="text/css">
+ 
+
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css" />
+    
+    
+    <script type="text/javascript">
+    
+    var locationstring = window.location.href;
+// replace() the trailing / with nothing, split on the remaining /, and pop off the last one
+	var result = /\/([^\/]*)$/.exec(locationstring)[1];
+
+    indy = window.location.href.indexOf(result)
+    
+    if (indy > 0) {
+    	apploc = window.location.href.slice(0,indy);
+    } else {
+	    
+	    apploc = window.location.href
+    }
+    
+    // alert(apploc)
+    //apploc = window.location.href.split("#")[0]
+    var dojoConfig = {
+    async: 1,
+    cacheBust: 1,
+    parseOnLoad: true,
+    packages: [
+        { name: "bootstrap", location: apploc + "/dojoBootstrap" },
+        { name: "grmapper", location: apploc + "/grmapper"}
+    ]
+    };
+    </script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/"></script>
+    
+
+
+ <script type="text/javascript">
+  
+      var map;
+      var MigratoryBirdsLayer;
+      //var drawtoolbar;
+      
+      var Legend;
+      
+      var tbut;
+      var toggleLayers;
+      var changeBackground;
+      
+      require([
+      			"grmapper/SummarizeUnit",
+      			"grmapper/CompareUnit",
+      			"grmapper/ToolBase",
+      			"grmapper/mbHeader",
+      			"grmapper/MapTip",
+                "bootstrap/Dropdown",
+                "bootstrap/Tooltip",
+                "bootstrap/Modal",
+                "esri/map",
+                "esri/layers/FeatureLayer",
+                "esri/tasks/query",
+                "esri/dijit/Scalebar",
+                "dojo/on",
+                "dojo/parser",
+                "dojo/ready",
+                "dojo/dom",
+                "dojo/dom-style",
+                "dojo/dom-construct",
+                "dojo/dom-class",
+                "dojo/_base/lang",
+                "dijit/layout/BorderContainer",
+                "dijit/layout/ContentPane",
+                "dojox/charting/Chart",
+                "dojox/charting/plot2d/Bars",
+                "dojox/charting/plot2d/ClusteredBars",
+                "dojox/charting/plot2d/StackedBars",
+                "dojox/charting/plot2d/Default",
+                "dojox/charting/axis2d/Default",
+                "dojox/charting/plot2d/Grid",
+                "dojo/_base/fx", 
+              	"dojox/dtl",
+              	"dojox/dtl/Context",
+                "esri/dijit/Attribution",
+                "dojo/dom-class",
+                "dojo/query",
+                "dojo/dom-attr",
+                "dojo/store/Memory",
+                "dijit/Dialog",
+                "esri/toolbars/draw",
+                "esri/dijit/Legend",
+                "esri/dijit/OverviewMap",
+                "dijit/form/HorizontalSlider",
+                "esri/layers/osm",
+                "dojox/mobile/Switch",
+                "dojox/mobile/parser", 
+                "dojox/mobile/deviceTheme",
+                "dojo/domReady!"
+            ], function (
+            	summarizeunit,
+            	compareunit,
+            	toolbase,
+            	mbHeader,
+            	MapTip,
+                Dropdown,
+                Tooltip,
+                Modal,
+                esrimap,
+                featureLayer,	
+                esriQuery,
+                Scalebar,
+                on,
+                parser,
+                ready,
+                dom, 
+                domStyle,
+                domConstruct,
+                domClass,
+                lang,
+                BorderContainer,
+                ContentPane,
+                Chart,
+                Bars,
+                ClusteredBars,
+                StackedBars,
+                plot2dDefault,
+                axis2dDefault,
+                plot2dGrid,
+                baseFx,
+                dtl,
+                dtlContext,
+                Attribution,
+                domClass,
+                query,
+                domAttr,
+                Memory,
+                Dialog,
+                esridraw,
+                Legend,
+                OverviewMap,
+                HorizontalSlider,
+                osm,
+                Switch,
+                mparser,
+                deviceTheme
+            ) {
+	           
+	           
+
+	            
+	           ready(init) 
+	            
+	           function init() {
+	           
+	            var topHeader = new mbHeader().placeAt("Topper");
+		        topHeader.startup();
+		       
+	           
+	           //mparser.parse();
+	           
+	    myDialog = new Dialog({
+            title: "Log In",
+            id: "enter",
+            content: 'You must login to access the site.<br> <input type="text" id="password" name="firstname" value="" data-dojo-type="dijit/form/TextBox" data-dojo-props="trim:true, propercase:true" id="firstname" /> <br> <button id="entersite" data-dojo-type="dijit/form/Button" type="button">Enter </button>',
+            style: "width: 300px"
+        });
+        
+        
+      //  myDialog.show();
+        
+        closeicon = query(".dijitDialogCloseIcon");
+        
+        domAttr.set(closeicon[0], "style", "display:none")
+        
+        
+        entersite = query("#entersite")
+        
+        
+        on(entersite[0], "click", lang.hitch(myDialog,function(e) {
+        
+        					pw = query("#password")
+        					
+        					x = pw[0].value;
+        					
+        					if (x == "maps") {
+        						
+        						this.hide()}})); 
+         
+	           
+	           //dojo.query("a").onclick(function(e){
+	           //e.preventDefault(); 
+	           //});  
+	           
+	           //var l
+	           layerchecks = query(".layerchecks")//.onclick(function(e){alert(e)})
+		           
+		           dojo.forEach(layerchecks, function(item, i){
+		           	 domAttr.set(item, "id", "layercheck" + i);
+		             on(item, "click", toggleCheck); 
+		           });
+		         
+	                  
+	           
+	           function changef() {
+	           
+	           alert('changeing')
+	           
+	           	domClass.replace("row1", "row-fluid", "row");
+	           	domClass.replace("cont1", "container-fluid", "container");
+	            
+	            }
+	              
+		        
+		         //on(dom.byId("two"), "click", moveFirst);
+		         
+ var initExtent = new esri.geometry.Extent({"xmin":-9973119.458500905,"ymin":5332417.059693703,"xmax":-8240492.596843248,"ymax":6375562.870129902,"spatialReference":{"wkid":102100}});
+            map = new esri.Map("map",{
+	        extent: initExtent,
+            basemap: "topo"
+        });
+        
+        on(dom.byId("fullExtent"), "click", function() {map.setExtent(new esri.geometry.Extent({"xmin":-9973119.458500905,"ymin":5132417.059693703,"xmax":-8240492.596843248,"ymax":6175562.870129902,"spatialReference":{"wkid":102100}}))});
+        
+   
+        //var basemap = new esri.layers.ArcGISTiledMapServiceLayer("http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer",{id:"base"});
+        //map.addLayer(basemap);
+
+        dojo.connect(map, 'onLoad', function(theMap) { 
+        
+        var dataSource = new esri.layers.TableDataSource();
+        dataSource.workspaceId = "MBData";
+        dataSource.dataSourceName = "GreatLakes";
+        var layerSource = new esri.layers.LayerDataSource();
+        layerSource.dataSource = dataSource;
+        
+        var layerUrl = 'http://maps.usm.edu:6080/arcgis/rest/services/GreatLakes/MigratoryBirds/MapServer/dynamicLayer';
+  var featureLayer = new esri.layers.FeatureLayer(layerUrl, {
+        mode: esri.layers.FeatureLayer.MODE_ONDEMAND,
+        outFields: ["*"],
+       // infoTemplate: infoTemplate,
+        source: layerSource
+      });
+
+      	//map.addLayer(featureLayer);
+      	
+      	MigratoryBirdsLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://maps.usm.edu:6080/arcgis/rest/services/GreatLakes/MigratoryBirds/MapServer",{useMapImage:true, opacity:0.7});
+        
+        dojo.connect(MigratoryBirdsLayer, "onLoad", function() {doLegend(dom.byId("legclicker"));toggleLayers});
+       
+    
+        dojo.connect(MigratoryBirdsLayer, "onUpdateStart", function() {load = dom.byId("loading"); domAttr.set(load, "style", "display:");});
+        dojo.connect(MigratoryBirdsLayer, "onUpdateEnd", function() {load = dom.byId("loading"); domAttr.set(load, "style", "display:none");});
+        
+        map.addLayer(MigratoryBirdsLayer);
+        
+        
+       slider = new HorizontalSlider({
+            name: "slider",
+            value: 0.7,
+            minimum: 0,
+            maximum: 1,
+            intermediateChanges: true,
+            style: "width:200px;margin-left: auto;margin-right: auto;",
+            onChange: function(value){
+                MigratoryBirdsLayer.setOpacity(value);
+            }
+        }, "slider");
+        
+        
+          //resize the map when the browser resizes
+          //dojo.connect(dijit.byId('mapspan'), 'resize', function() {alert()}) // map,  function(){alert('')}); //map.resize);
+          on(window, 'resize', changemapsize);
+          
+          changemapsize(); 
+    
+          
+          //drawtoolbar = null //= new esri.toolbars.Draw(map);
+		  //drawtoolbar.activate(esri.toolbars.Draw.POLYGON);
+		  
+		  sbut = dom.byId("summarizebutton");
+          on(sbut, 'click', function(e) {starttool(toolbase,summarizeunit,{"name":"George",map:map,stype:"model"})});
+          
+          shab = dom.byId("summarizehabitatbutton");
+          on(shab, 'click', function(e) {starttool(toolbase,summarizeunit,{"name":"George",map:map,stype:"habitat"})});
+          
+          chab = dom.byId("comparehabitatbutton");
+          on(chab, 'click', function(e) {starttool(toolbase,compareunit,{"name":"George",map:map,stype:"habitat"})});
+          
+          cbut = dom.byId("comparebutton");
+          on(cbut, 'click', function(e) {starttool(toolbase,compareunit,{"name":"George",map:map,stype:"model"})});
+          
+          //tbut = dom.byId("thresholdButton");
+          //tbut.threshold = false;
+          //on(tbut, 'click', toggleThreshold);
+ 
+          tbut = dom.byId("thresholdButton2");
+          tbut.threshold = false;
+          on(tbut, 'click', toggleThreshold);
+                              
+          //starttool(summarizemap,toptions); 
+          
+          
+          //thing = domConstruct.create("li", {	innerHTML: '<a href="#">test</a>'}, clist);
+        
+	        mappertip = new MapTip({map:map}).placeAt("map");
+		  	mappertip.startup();
+		        
+		     npane = new ContentPane({
+			     content:"<div id='legc'></div>",
+			     style:"height:280px"
+			 }, "LegendContent");
+			 
+			
+			var overviewMapDijit = new esri.dijit.OverviewMap({
+            map: map,
+            height: 170,
+   //         width: 290,
+            visible: true,
+            expandFactor: 8
+            });
+            overviewMapDijit.startup();
+
+			scalebar = new esri.dijit.Scalebar({map:map,scalebarUnit:"metric",attachTo:"bottom-left"});   
+
+			   //doLegend(dom.byId("legclicker"));
+
+          })
+		           
+	           } 
+	       
+	       
+	       doLegend = function(labelNode) {
+				
+				disp = domStyle.get("legendDiv", "display");
+				
+				if (disp == "none") {
+				
+				 if (map.legend == undefined) {
+				 
+				 	map.legend = new esri.dijit.Legend({
+			          map:map
+			          },"legc");
+			        map.legend.startup();
+			        
+			        map.legend.refreshNoBase = function() {
+				        
+				       
+				       outlayids = []
+					    dojo.forEach(map.layerIds, function(item, i){
+						         if (i != 0) {
+						         
+							         lay = map.getLayer(item);
+							         outlayids.push({layer:lay,title:' '})
+						         }
+						  });
+						  
+						//alert(filteredArr);
+  
+				        map.legend.refresh(outlayids)
+				        
+			         }
+			         
+			       map.legend.refreshNoBase();
+			        
+			        } else {
+				        
+				     map.legend.refreshNoBase()
+			        }
+			        
+			     a = baseFx.animateProperty({
+				   		node: "legendDiv",
+				   		//onEnd: lang.hitch(this, function() {}),
+				   		properties: {
+					   		opacity: { start: 0, end: 0.9 }
+					   		},
+					   		duration: 600
+					   });
+					   
+				 a.play()
+			
+				domStyle.set(legendDiv, "display", "");
+				 
+			        labelNode.innerHTML = "Hide Legend" 
+			        
+			   }  else {
+			   
+			     a = baseFx.animateProperty({
+				   		node: "legendDiv",
+				   		onEnd: lang.hitch(this, function() {domStyle.set("legendDiv", "display", "none");}),
+				   		properties: {
+					   		opacity: { start: 0.9, end: 0 }
+					   		},
+					   		duration: 600
+					   });
+					   
+				 a.play()
+				 
+				 labelNode.innerHTML = "View Legend for Visible Layers" 
+				      
+			   }
+			   }
+	           
+	         
+	         function toggleThreshold(e) {
+
+	            if (this.threshold) {
+		            domClass.remove(this,"btn-success")
+		            this.threshold = false;
+		            toggleLayers();
+	            } else {
+		            domClass.add(this,"btn-success")
+		            this.threshold = true;
+		            toggleLayers();
+	            }
+	         
+	         }
+	         
+	         
+	         changeBackground = function(bglayerName) {
+		         
+		         map.setBasemap(bglayerName);
+		        
+		         bgchecks = query(".bgchecker"); 
+		         dojo.forEach(bgchecks, lang.hitch(this,function(item, i){
+		         
+		         	if (domClass.contains(item, bglayerName)) {
+
+				          domClass.remove(item,"ispace")
+				          domClass.add(item,"icon-ok")			         	
+			         	
+		         	} else {
+
+				          domClass.remove(item,"icon-ok")
+				          domClass.add(item,"ispace")				         	
+			         	
+		         	}
+		         
+		         })
+		         );
+		         
+	         }
+	         
+	         
+	         function toggleCheck(e) {
+		        
+		          
+		          dojo.forEach(layerchecks, lang.hitch(this,function(item, i){
+		            if (item.rel == this.rel) {
+
+			          checknode = query("#" + this.id + " > *");
+			          
+			          if (domClass.contains(checknode[0], "icon-ok")) {
+				          domClass.remove(checknode[0],"icon-ok")
+				          domClass.add(checknode[0],"ispace")
+			          } else {
+				          domClass.remove(checknode[0],"ispace")
+				          domClass.add(checknode[0],"icon-ok")			          
+			          }
+			            
+			            
+		            } else {
+		            
+		               if (this.rel != 0) {
+		               
+		                 if (item.rel != 0) {
+		             	  checknode = query("#" + item.id + " > *");
+		            
+				          domClass.remove(checknode[0],"icon-ok")
+				          domClass.add(checknode[0],"ispace")	
+				          } 
+				         }	            
+			       
+		            }
+		            
+		       
+		          
+		          }));
+		          
+
+		         
+		         toggleLayers();
+		         
+	         }
+	         
+	         toggleLayers = function() { 		          
+		          
+		          layerchecks = query(".layerchecks");
+		          ShowLayers = []
+		          
+		          dojo.forEach(layerchecks, function(item, i){
+		              //alert(item.rel)
+		              checknode = query("#" + item.id + " > *");
+		              if (domClass.contains(checknode[0], "icon-ok")) {
+		              	 laytoTurn = item.rel;
+		              	 if ((tbut.threshold == true) && (item.rel > 6) && (item.rel < 10)) {
+			              	 laytoTurn = parseInt(item.rel) + 3;
+		              	 }
+		                 ShowLayers.push(laytoTurn)
+		              }
+		           });
+		          
+		          
+		          
+		          if (ShowLayers.length > 0) {
+
+			          MigratoryBirdsLayer.show();
+			          MigratoryBirdsLayer.setVisibleLayers(ShowLayers);
+			          
+		          } else {
+			          
+			         MigratoryBirdsLayer.hide(); 
+		          }
+		          
+
+		           if (map.legend != undefined) {
+		           	 map.legend.refreshNoBase()
+		           }
+		     
+		         
+	         }
+	         
+	         
+	         function starttool(toolname, subtooltype, options) {
+	         
+
+	         	tarea = dom.byId("toolsarea");
+	         	
+	         	thing = domConstruct.create("div", {class: 'row'}, tarea);
+	         	thing2 = domConstruct.create("div", {class: 'span12'}, thing);
+		          
+		          //var authorContainer = dom.byId("sumarea");
+		          
+		          if (summarizeunit == subtooltype){
+		          	pretitle = "Summarize";
+		          } else {
+			        pretitle = "Compare"; 
+		          }
+		          if (options.stype == "habitat") {
+			         otitle = pretitle + " Available Habitat"  
+		          } else {
+			         otitle = pretitle + " Stopover Model Scores"
+		          }
+		          var widget = new toolname({map:map,tooltype:subtooltype,title: otitle,options:options}).placeAt(thing2);
+		          widget.startup();
+		          
+		          
+	          }
+	          
+	    
+	          function changemapsize(e) {
+      
+      	      a = dojo.byId('map')
+      	   
+	          //alert(a.style.height)
+	        
+	          a.style.height = '200px';
+	          
+	          mapspanel = dojo.position('mapspan', true)
+	          //mapel = dojo.position('map', true)
+	          
+	          if (window.innerHeight > 900) {
+		          
+		       a.style.height = Math.round(window.innerHeight * 0.60) + 'px';
+		     
+		          
+	          } else {
+		       
+		       a.style.height = '550px';  
+		
+		          
+	          }
+	          
+	          map.resize();
+	          map.reposition();
+	      
+	          }       
+	          
+	          
+	          function createChart(results) {
+		          
+		          count = 0;
+		          
+		          
+		          
+		          for (d in results.features) {
+			          count = count + 1
+		          }
+		          
+		          //alert(count)
+		          
+	          } 
+	            
+	            
+	            
+	            
+            });
+      
+      
+      
+ </script>
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body class="tundra">
+
+ 
+
+    <div class="container">
+    
+    <div class="row" >
+    		 <div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 
+    		 </div>
+    </div>
+    
+    <div class="row" id="Topper">
+  
+  
+    </div>
+    
+    <div class="row">
+    
+          <div class="span12" style="padding:4px; width: 97%; box-shadow: 2px 2px 5px #888888; background-image: linear-gradient(bottom, rgb(240,237,240) 16%, rgb(250,247,250) 60%, rgb(250,247,250) 80%);
+background-image: -o-linear-gradient(bottom, rgb(240,237,240) 16%, rgb(250,247,250) 60%, rgb(250,247,250) 80%);
+background-image: -moz-linear-gradient(bottom, rgb(240,237,240) 16%, rgb(250,247,250) 60%, rgb(250,247,250) 80%);
+background-image: -webkit-linear-gradient(bottom, rgb(240,237,240) 16%, rgb(250,247,250) 60%, rgb(250,247,250) 80%);
+background-image: -ms-linear-gradient(bottom, rgb(240,237,240) 16%, rgb(250,247,250) 60%, rgb(250,247,250) 80%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0.16, rgb(240,237,240)),
+	color-stop(0.6, rgb(250,247,250)),
+	color-stop(0.8, rgb(250,247,250))
+);-moz-border-radius: 5px;
+border-radius: 5px;">
+
+ <!-- <span style="padding-right:4px">Map Tools: </span> -->
+
+  <div class="btn-group">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+   <span class="icon-wrench"></span>
+    Map Tools
+    <span class="caret"></span>
+  </a>
+           <ul class="dropdown-menu">
+	           	  
+	           	  <li class="nav-header">Summarize</li>
+	           	  <li><a href="#" id="summarizehabitatbutton">Available Habitat </a></li>
+                  <li><a href="#" id="summarizebutton">Stopover Model Scores</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Compare</li>
+                  <li><a href="#" id="comparehabitatbutton">Available Habitat </a></li>
+                  <li><a href="#" id="comparebutton">Stopover Model Scores</a></li>
+                  
+                  
+                  <!--<li class="divider"></li>
+                  <li class="nav-header">Administrative Boundaries</li>
+                  <li><a href="#">Township</a></li>
+                  <li><a href="#">County</a></li>
+                  <li><a href="#">State</a></li>
+                  <li class="nav-header">Watershed Boundaries</li>
+                  <li><a href="#">Individual Great Lakes Basin</a></li>
+                  <li><a href="#">Great Lakes Basin</a></li>
+                  <li><a href="#">Watersheds</a></li>  -->
+
+            </ul>
+       
+          
+    </div> 
+    
+  <div class="btn-group">
+    	
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    Change Background
+    <span class="caret"></span>
+  </a>
+           <ul class="dropdown-menu">
+	           	  
+          <!--        <li><a href="#"><span class="icon-map-marker"></span> Location Search</a></li>
+                  <li class="divider"></li> 
+                  <li class="nav-header">Change Background</li> -->
+                  <li><a href="#" class="esribackgrounds" onclick="changeBackground('topo')"><span class="icon-ok topo bgchecker"></span> Topographic Map (Default)</a></li>
+                  <li><a href="#" class="esribackgrounds" onclick="changeBackground('streets')"><span class="ispace streets bgchecker"></span> Street Map</a></li>
+                  <li><a href="#" class="esribackgrounds" onclick="changeBackground('hybrid')"><span class="ispace hybrid bgchecker"></span> Imagery With Labels</a></li>
+                  <li><a href="#" class="esribackgrounds" onclick="changeBackground('satellite')"><span class="ispace satellite bgchecker"></span> Imagery</a></li>
+                  <li><a href="#" class="esribackgrounds" onclick="changeBackground('gray')"><span class="ispace gray bgchecker"></span> Plain Gray</a></li>
+                  <li><a href="#" class="esribackgrounds" onclick="changeBackground('oceans')"><span class="ispace oceans bgchecker"></span> Oceans</a></li>
+                  <li><a href="#" class="esribackgrounds" onclick="changeBackground('national-geographic')"><span class="ispace national-geographic bgchecker"></span> National Geographic</a></li>
+                  <li><a href="#" class="esribackgrounds" onclick="changeBackground('osm')"><span class="ispace osm bgchecker"></span> Open Street Map</a></li>
+
+            </ul>
+       
+       <!--  						map.setBasemap("gray");  -->
+          
+    </div>  
+    
+      <div class="btn-group">
+    	
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    Layers
+    <span class="caret"></span>
+  </a>
+           <ul class="dropdown-menu">
+	           	  
+                  
+                  <!--<li class="nav-header"></li> -->
+                  <li class="nav-header">Model Scores</li>
+                  <li><a href="#" class="layerchecks" rel="1"><span class="ispace"></span> Landbird Model Score </a></li>
+                  <li><a href="#" class="layerchecks" rel="2"><span class="ispace"></span> Shorebird Model Score</a></li>
+                  <li><a href="#" class="layerchecks" rel="3"><span class="ispace"></span> Waterfowl Model Score </a></li>
+                  <li class="nav-header">Habitat </li>
+                  <li><a href="#" class="layerchecks" rel="4"><span class="ispace"></span> Landbird Habitat </a></li>
+                  <li><a href="#" class="layerchecks" rel="5"><span class="ispace"></span> Shorebird Habitat </a></li>
+                  <li><a href="#" class="layerchecks" rel="6"><span class="ispace"></span> Waterfowl Habitat </a></li>
+                  <li class="nav-header">Neighborhood Values &nbsp;&nbsp;<button class="btn btn-mini thresholdButton" type="button" id="thresholdButton" style="display:none">Threshold</button></li>
+                  <li><a href="#" class="layerchecks" rel="7"><span class="ispace"></span> Landbird Neighborhood Value (5km)</a></li>
+                  <li><a href="#" class="layerchecks" rel="8"><span class="ispace"></span> Shorebird Neighborhood Value (3km) </a></li>
+                  <li><a href="#" class="layerchecks" rel="9"><span class="ispace"></span> Waterfowl Neighborhood Value (3km) </a></li>
+                  <li></li>
+                  <li class="divider"></li>
+                  <li><a href="#" class="layerchecks" rel="0"><span class="ispace"></span> Protected Lands </a></li>
+                  <li><a href="#" class="layerchecks" rel="13"><span class="icon-ok"></span> Land Cover</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Adjust Transparency</li>
+                  <div id="slider"></div>
+                  <li class="divider"></li>
+                  <li><a href="#" onclick="doLegend(this)" id="legclicker"> View Legend for Visible Layers </a></li>
+
+            </ul>
+       
+          
+    </div>  
+
+ <div class="btn-group">
+    <a href="resources/UserGuideMapInterface.pdf" target="_blank"><button class="btn" type="button"><i class="icon-book"></i> Map User Guide</button></a>
+    
+ </div> 
+
+           
+    </div>
+      
+      
+    
+    </div>
+    
+     
+	        
+        </div>
+      </div>
+    </div>
+    
+    
+    <div class="container" style="margin-top:8px;" id="toolsarea">
+  
+    
+    </div>
+    
+    
+    <div class="container" style="border:1px solid #333;box-shadow: 2px 2px 5px #888888;margin-top:8px">
+	        	
+      <div class="row" >
+      
+        <div class="span12" id="mapspan" >
+        	        
+	        <div id="map">
+	        	
+	        	<div style="display:none" id="loading""><img src="resources/images/loading.gif" /></div>
+	        
+	        	<a href="#" style="-moz-border-radius: 5px;border-radius: 5px;position:absolute;top: 90px;left: 20px;z-index: 999;width:30px;height:25px;margin-left:auto;margin-right: auto;text-align: center;border-style:solid;border-width:2px;border-color:#444;padding-top:5px;background-color:#fff" id="fullExtent"><i class="icon-globe" ></i></a>
+	            <div id="legendDiv" style="display:none">
+		        	<div class="popover-inner"><h3 class="popover-title"><strong>Legend</strong></h3></div>
+		        	<div class="popover-content">
+		        	<div id="LegendContent"></div>
+		        	<button class="btn btn-mini thresholdButton" type="button" id="thresholdButton2" style="position:absolute;top:6px;right:6px">Threshold Neighborhood Values</button>
+		        	</div>
+		        </div>  	        
+	      	        
+	        </div>
+	        
+         </div>
+       </div> 
+
+    </div> 
+	        
+	        
+ <div class="container">        
+         <div class="row">
+         
+         <div class="span12" style="padding-top:8px">
+         
+         	       <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50c25229684f669d"></script>
+<!-- AddThis Button END -->
+         
+         </div>
+         
+         
+         <div class="row">
+        
+            
+         </div>
+      
+     </div>
+   
+    </div>
+
+     <div class="container" id="footer">
+
+
+    </div> 
+
+     </div>
+ 
+
+  </body>
+</html>

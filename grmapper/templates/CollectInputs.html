@@ -1,0 +1,58 @@
+<div>
+   
+   <div class="step step-step1">
+   
+    <h5 class="introText" data-dojo-attach-point="nameNode" style="display: inline;"><span class="badge badge-inverse">${stepNumber}</span> Choose a </h5> <!-- ${name}, -->
+    
+  <div class="btn-group">
+    	
+  <span class="btn dropdown-toggle" data-toggle="dropdown">
+    Unit of Analysis
+    <span class="caret"></span>
+  </span>
+           <ul class="dropdown-menu">
+	           	  
+                  <li><a href="#" class="usesite">Site (User Defined)</a></li>
+                  <li class="divider"></li>
+                  
+                  <li class="nav-header">Administrative Boundaries</li>
+                  <li><a href="#" class="usepoly" rel=0>States and Provinces</a></li>
+                  <li><a href="#" class="usepoly" rel=1>Counties and Census Divisions</a></li>
+                  <li><a href="#" class="usepoly" rel=2>Townships and Census Subdivisions</a></li>
+
+                  <li class="nav-header">Watershed Boundaries</li>
+                  <li><a href="#" rel=3>Entire Great Lakes Basin</a></li>
+                  <li><a href="#">Individual Great Lakes Basins</a></li>
+                  <li><a href="#" class="usepoly" rel=5>Watersheds</a></li>
+                  
+                  <li class="nav-header">Planning Units</li>
+                  <li><a href="#" class="usepoly" rel=6>Coastal Planning Units</a></li>
+
+            </ul>
+    </div>   
+    </div>
+    
+   
+   
+    <div class="step step-step2site" style="display:none;"> 
+    
+    <div class="row"> <div class="span11">
+     <h5 ><span class="badge badge-inverse secondNumber">2</span> Next, Draw a polygon on the map.  Click once to start, click intermediate vertices, then double click to finish the sketch.  You may draw as many polygons as you wish (County size shapes will take seconds to process, State size polygons will take minutes).  When you are finished click "Submit" below. </h5> </div></div>
+     
+     <div class="row"> <div class="span11"><center> <a class="btn clearfeatures" href="#"><i class="icon-remove"></i> Clear Selection</a> <!-- <a class="btn" href="#"><i class="icon-arrow-left"></i> Return to Step 1</a>--> <a class="btn btn-primary submit-features" href="#"><i class="icon-ok icon-white"></i> Submit</a> </center></div></div>
+     
+    </div>
+    
+    
+    <div class="step step-step2area" style="display:none;"> 
+    
+    <div class="row"> <div class="span11">
+     <h5 ><span class="badge badge-inverse secondNumber">2</span> Next, Choose the unit(s) you want to include.  You may click directly on the unit(s) you want to select on the map, or choose them from the drop down menu below.  When you have made the selection(s) you would like, click "Submit" below. </h5> </div></div>
+     
+     <div class="row"> <div class="span11"><center> <a class="btn clearfeatures" href="#"><i class="icon-remove"></i> Clear Selection</a><!--<a class="btn" href="#"><i class="icon-arrow-left"></i> Return to Step 1</a>--> <a class="btn btn-primary submit-features" href="#"><i class="icon-ok icon-white"></i> Submit</a> </center></div></div>
+     
+    </div>
+    
+
+        
+</div>

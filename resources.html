@@ -1,0 +1,618 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Migratory Birds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+    
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    
+    <link href="grmapper/css/grmapper.css" rel="stylesheet">
+    
+    <style type="text/css">
+       
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css" />
+    
+    
+    <script type="text/javascript">
+    
+    var locationstring = window.location.href;
+// replace() the trailing / with nothing, split on the remaining /, and pop off the last one
+	var result = /\/([^\/]*)$/.exec(locationstring)[1];
+
+    indy = window.location.href.indexOf(result)
+    
+    if (indy > 0) {
+    	apploc = window.location.href.slice(0,indy);
+    } else {
+	    
+	    apploc = window.location.href
+    }
+    
+    var dojoConfig = {
+    async: 1,
+    cacheBust: 1,
+    parseOnLoad: true,
+    packages: [
+        { name: "bootstrap", location: apploc + "/dojoBootstrap" },
+        { name: "grmapper", location: apploc + "/grmapper"}
+    ]
+    };
+    </script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.3"></script>
+    <script type="text/javascript">
+
+      
+      require([
+                "bootstrap/Alert",
+                "bootstrap/Button",
+                "bootstrap/Dropdown",
+                "grmapper/mbHeader",
+                "bootstrap/Modal",
+                "dojo/dom-class",
+                "dojo/dom-attr",
+                "dojo/query",
+                "dojo/ready",
+                "dojo/on",
+                "dojo/_base/lang",
+                "bootstrap/Tooltip",
+                "bootstrap/Popover",
+                "bootstrap/Scrollspy",
+                "dojo/domReady!"
+            ], function (
+                Alert,
+            	bsButton,
+                Dropdown,
+                mbHeader,
+                Modal,
+                domClass,
+                domAttr,
+                query,
+                ready,
+                on,
+                lang,
+                Tooltip,
+                Popover,
+                Scrollspy
+            ) {
+	           
+	           
+	            
+	           ready(init) 
+
+	     
+	           function init() {
+	           
+	           
+	           
+	           	var topHeader = new mbHeader().placeAt("Topper");
+		        topHeader.startup();
+		        	                    
+		        query('.articlelink').popover({placement:"top",trigger:"hover"})
+		        
+		        //a= query('.popover')
+		       
+		        //a.addClass("wider")
+		              
+		           
+		           btns = query(".sidenav")//.onclick(function(e){alert(e)})
+		           
+		           dojo.forEach(btns, function(item, i){
+		             on(item, "click", activateSection); 
+		           });
+		         
+		         
+		         
+		       function activateSection(e) {
+		       
+		       		btns = query(".sidenav")
+		       		dojo.forEach(btns, function(item, i){
+		              domClass.remove(item,"btn-success");
+		            });
+		         
+			       domClass.add(this,"btn-success")
+			       
+			       cpv = this.getAttribute("data-content");
+			       
+			       pvs = query(".pageview")
+		       		dojo.forEach(pvs, function(item, i){
+		              domAttr.set(item, "style", "display:none");
+		            });
+		            
+		           outcpv = query("." + cpv)
+		           dojo.forEach(outcpv, function(item, i){
+		           	domAttr.set(item, "style", "display:");
+		           });
+		           
+		           query('[data-spy="scroll"]').scrollspy('refresh')
+
+		           
+		           //.forEach(function () {
+			       //    var queryspy = query(this).scrollspy('refresh')
+			       //    });
+		           
+		           }
+		            
+			       
+		         
+		           
+		           
+	           } 
+	            
+	
+            
+	            
+            });
+      
+      
+      
+ </script>
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body class="tundra" data-spy="scroll" data-target="#page-nav">
+
+ 
+
+    <div class="container containerSmall">
+    
+    <div class="row" >
+    		 <div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 </div>
+    </div>
+    
+    <div class="row" id="Topper">
+  
+  
+    </div>
+    
+    <div class="row">
+
+    
+     </div>
+ 
+    </div>   
+    
+ 
+ </div>
+    
+ 
+ <div class="container containerSmall contentwall">    
+    
+         <div class="row">
+         
+         <div class="span3" style="padding-top:30px; padding-left:40px; width:250px">
+         <button class="btn btn-block btn-success sidenav" type="button" data-content="s1">A selection of key stopover papers</button>
+         <button class="btn btn-block sidenav" type="button" data-content="s2">Huge stopover bibliography</button>
+         <button class="btn btn-block sidenav" type="button" data-content="s3">Additional Resources</button>
+ 
+ <br>
+ <br>
+ 	   <div id="page-nav" style="display:none;" class="s3 pageview">
+                        <ul class="nav nav-pills nav-stacked bs-page-sidenav affix">
+                        	<li class="active"><a href="#regionalpartners">Regional Partners</a></li>
+                        	<li class="active"><a href="#nationalscale">National-scale information</a></li>
+                        	<li class="active"><a href="#collaborativeefforts">Collaborative Efforts</a></li>
+                        	<li class="active"><a href="#Birdlifehistoriesandbiology">Bird life histories and biology</a></li>
+                        	<li class="active"><a href="#NationalInternationalorganizations">National/International organizations</a></li>
+                        	<li class="active"><a href="#WindEnergy">Wind Energy</a></li>
+                        	<li class="active"><a href="#broadresource">Broad Natural Resource Plans</a></li>
+                       <!--     <li class="menu-link-top"><a href="#"><i class="icon-arrow-up"></i>back to top</a></li> -->
+                        </ul>
+       </div>        
+         </div>
+         
+  <div class="span8" >
+         
+
+      <div class="homeHeader">
+
+<div id="addthis_home">    
+       <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50c25229684f669d"></script>
+<!-- AddThis Button END -->
+</div>
+
+   </div>
+   
+  </div>
+  
+         </div>
+  
+  <div class="row">
+         
+   <div class="span3" style="padding-top:0px; padding-left:40px; width:250px">
+
+   </div>        
+     
+     <div class="span8" > 
+
+   	 <div class="pageview s1 biblist">
+        <h4 class="text-info">A selection of key stopover papers</h4>
+         		<p>These papers were selected from among the Huge Stopover Bibliography to include studies of each of the bird groups (landbirds, shorebirds, and waterfowl) that (1) may be generally applicable throughout the Great Lakes region, and (2) that have been done in different parts of the Great Lakes basin.   Many other papers cited in the bibliography complement the papers noted below, including detailed site-specific information that will be useful for implementing on the ground conservation strategies.  Hover over the title to get a brief description of the article.
+</p>
+
+<ul>
+<li>
+Bonter, D.N., S.A. Gauthreaux, Jr., and T.M. Donovan. 2009. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="Using NEXRAD radar, the authors found that higher concentrations of spring landbird migrants were associated with (1) more forest and water cover, (2) areas near Great Lakes shorelines, and avoided areas with agriculture.">Characteristics of important stopover locations for migrating birds: Remote sensing with radar in the Great Lakes basin. </a>  Conservation Biology 23:440-448.
+</li>
+
+<li>
+Diehl, R.H., R.P. Larkin, and J.E. Black. 2003. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="Although many landbird migrants cross the Great Lakes, some migrants avoided flying over the lakes.  At dawn, for migrants located over the Great Lakes, migrants may reverse course and return to the shoreline.   Both effects may concentrate birds along Great Lakes shorelines.">Radar observations of bird migration over the Great Lakes.</a>  The Auk 120:278-290.
+</li>
+
+<li>
+Dunn, E.H. 2000. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="Early migrants lose mass early in spring migration and at the tip of one peninsula, Long Point, Ontario but gain mass in fall at all sites.  Hence a range of protected good quality stopover sites may be needed, especially in spring.">Temporal and spatial patterns of mass gain of Magnolia Warblers during migration.</a>  The Auk 117:12-21.
+</li>
+
+<li>
+Ewert, D.N., G.J. Soulliere, R.D. Macleod, M.C. Shieldcastle, P.G. Rodewald, E. Fujimura, J. Shieldcastle, and R.J. Gates. 2006. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="This report summarizes threats and characteristics of stopover sites for landbirds, shorebirds, waterfowl, and waterbirds for the western Lake Erie basin in Ohio and Michigan but is applicable to other areas of the Great Lakes region.  Known important stopover sites are listed and conservation strategies identified.">Migratory bird stopover site attributes in the western Lake Erie basin.</a>  Final report, George Gund Foundation.
+</li>
+
+<li>
+Ewert, D.N., M.J. Hamas, R.J. Smith, M.E. Dallman, and S.W. Jorgensen. 2011. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="In a forested landscape along the northern Lake Huron shoreline of Michigan, landbirds were concentrated very near the shoreline in spring and fall, especially in spring when large numbers of midges were near the shoreline.">Distribution of migratory landbirds along the northern Lake Huron shoreline. </a>  Wilson Journal of Ornithology 123:536-547. 
+</li>
+
+<li>
+Faaborg, J., R.T. Holmes, A.D. Anders, K.L. Bildstein, K.M. Dugger, S.A. Gauthreaux, Jr., P. Heglund, K.A. Hobson, A. E. Jahn, D.H. Johnson, S.C. Latta, D.J. Levey, P.P. Marra, C.L. Merkford, E. Nol, S.I. Rothstein, T.W. Sherry, T.S. Sillett, F.R. Thompson III, and N. Warnock. 2010. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="Although much remains to be known about landbird migration, including pathways and timetables of migration, quality and distribution of stopover habitats, and hazards to migrating birds, conservation should proceed.  The authors noted that loss of wetlands where large numbers of shorebirds concentrate, protecting habitat fragments in highly altered landscapes and protecting good habitat along the Great Lakes are conservation strategies that should be implemented now.">Conserving migratory land birds in the New World: Do we know enough?</a>  Ecological Applications 20:398-418. 
+</li>
+
+<li>
+France, K.E., M. Burger, M.D. Schlesinger, K.A. Perkins, M. MacNeil, D. Klein and D.N. Ewert. 2012. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="Species richness and abundance of landbird migrants during spring and fall is greater closer to Lake Ontario than father inland but some inland areas with wetland complexes had many migrants.  Patches of habitat in highly altered landscapes had high densities of migrants.">Final report for Lake Ontario Migratory Bird Stopover Project.  Prepared by The Nature Conservancy for the New York State Department of Environmental Conservation (Grant C303907 from the New York Great Lakes Protection Fund).</a>  Available from <a href='www.nature.org/nybirds' style="font-weight:normal">www.nature.org/nybirds</a>.
+</li>
+
+
+<li>
+Lott, K.D., M. Seymour, and B. Russell. 2011. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="The distribution of waterbirds and other birds over the open waters of Lake Erie during spring and fall migration are described.  This is the most comprehensive study evaluating where migrants occur on a Great Lake from the shoreline to the middle of the lake.">Mapping pelagic bird distribution and abundance as a decision-making tool for offshore wind turbine development and conservation planning.</a>  Available from:  <a href='http://www.dnr.state.oh.us/Home/wild_resourcessubhomepage/ResearchandSurveys/WildlifeWind/tabid/21467/Default.aspx' style="font-weight:normal">hyperlink</a>
+</li>
+
+
+<li>
+Petit, D.R. 2000. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="Landbirds use a wider range of habitats during migration than during breeding, though they use similar habitats during both stages.  General recommendations include (1) quality and importance of a stopover site is dependent on proximity to major migration routes and barriers, (2) habitat patches near ecological barriers are especially important, (3) tall and structurally diverse forests should be maintained for migrants, (4) a diversity of habitats should be available for migrants to account for needs of individual species , (5) small habitat fragments are important as emergency stopover areas, and (6) individual site stopover protection needs to be considered in the context of the surrounding area (landscape) and regional scale.">Habitat use by landbirds during Nearctic-Neotropical migration routes: implications for conservation of stopover habitats.</a>  Studies in Avian Biology 20: 15-33.
+</li>
+
+
+<li>
+Potter, B.A., R.J. Gates, G.J. Soulliere, R.P. Russell, D.A. Granfors, and D.N. Ewert. 2007. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="Comprehensive report noting the species of shorebirds that migrate through the Great Lakes region and surrounding areas.  Estimates of additional habitat needed to sustain migrating landbirds are given by habitat and state.">Upper Mississippi River and Great Lakes Joint Venture Shorebird Habitat Conservation Strategy.</a> U.S. Fish and Wildlife Service, Fort Snelling, MN. 101 pp.
+</li>
+
+
+<li>
+Soulliere, G.J., B.A. Potter, J.M. Coluccy, R.C. Gatti, C.L. Roy, D.R. Luukkonen, P.W. Brown, and M.W. Eicholz. 2007. <a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content="Comprehensive report noting the species of waterfowl of highest concern that migrate through the Great Lakes region and surrounding areas.  Estimates of additional habitat needed to sustain migrating, breeding and wintering waterfowl are given by habitat and state.">Upper Mississippi River and Great Lakes Region Joint Venture Waterfowl Habitat Conservation Strategy.</a>  U.S. Fish and Wildlife Service, Fort Snelling, Minnesota, USA.
+</li>
+
+</ul>
+  
+<!--<a href="#" data-custom-class="wider" class="articlelink" title="Article Summary:" data-content=""> -->
+
+         
+   	 </div>
+   	 
+   	 <div class="pageview s2" style="display:none">
+        <h4 class="text-info">Huge stopover bibliography</h4>
+        <p>Download stopover bibliography <a href="downloads/Stopoverbiblio.docx" target="_blank">here</a>.</p>
+<p>This bibliography lists more than 1,200 scientific papers on stopover sites for songbirds, waterfowl, and shorebirds.  Papers referencing related topics, such as connectivity between wintering and breeding areas of various species, are also included.  Search the titles for particular topics or geographic regions of interest.  The bibliography will be updated periodically.</p>
+
+        
+         		      		
+         		         
+   	 </div>
+
+   	 <div class="pageview s3" style="display:none">
+        <h4 class="text-info">Additional Resources</h4>
+         
+         
+         <p>These span species-specific biology, general info on bird migration, conservation issues and topics that overlap with bird conservation, and spatial data that you might want to use in conjunction with the data available on our Map page.  Please use this additional information to contextualize and help interpret our stopover habitat model (see <a href='download.html'>Downloads</a> page for our report, metadata, etc) and the <a href='map.html'>maps</a>.</p>
+           
+<p><i>If we’ve missed something on this list, please feel free to <a href='mailto:michigan@tnc.org'>send us suggestions</a></i></p>
+ 
+<h5 class="text-success" id="regionalpartners">Regional partners in migratory bird conservation and research (arranged by state):</h5>
+<ul>
+<li>
+<a href='http://www.bsc-eoc.org/' target="_blank">(ON, rest of Canada) Bird Studies Canada</a> http://www.bsc-eoc.org/ 
+</li>
+<li>
+<a href='http://www.habitatproject.org/CMBA/' target="_blank">(IL, IN, WI, MI) Chicago Migratory Bird Alliance</a> http://www.habitatproject.org/CMBA/
+</li>
+<li>
+<a href='http://www.chicagowilderness.org' target="_blank">(IL, IN, WI, MI)  Chicago Wilderness</a> http://www.chicagowilderness.org 
+</li>
+<li>
+<a href='http://bcnbirds.org/' target="_blank">(IL, IN) Bird Conservation Network</a> http://bcnbirds.org/
+</li>
+<li>
+<a href='http://www.illinoisaudubon.org/' target="_blank">(IL) Illinois Audubon Society</a> http://www.illinoisaudubon.org/ 
+</li>
+<li>
+<a href='http://chicagoregion.audubon.org/' target="_blank">(IL) Audubon Chicago Region</a> http://chicagoregion.audubon.org/ 
+</li>
+<li>
+<a href='http://www.indianaaudubon.org/' target="_blank">(IN) Indiana Audubon Society</a> http://www.indianaaudubon.org/ 
+</li>
+<li>
+<a href='http://www.fws.gov/refuge/detroit_river/' target="_blank">(MI & Ontario) Detroit International Wildlife Refuge</a> http://www.fws.gov/refuge/detroit_river/
+</li>
+<li>
+<a href='http://www.detroitaudubon.org' target="_blank">(MI) Detroit Audubon Society</a> http://www.detroitaudubon.org 
+</li>
+<li>
+<a href='http://www.michiganaudubon.org/' target="_blank">(MI) Michigan Audubon Society</a> http://www.michiganaudubon.org/
+</li>
+<li>
+<a href='http://www.mibci.org/' target="_blank">(MI) Michigan Bird Conservation Initiative</a> http://www.mibci.org/
+</li>
+<li>
+<a href='http://www.rrbo.org/' target="_blank">(MI) Rouge River Bird Observatory</a> http://www.rrbo.org/ 
+</li>
+<li>
+<a href='http://www.wpbo.org/' target="_blank">(MI) Whitefish Point Bird Observatory</a> http://www.wpbo.org/ 
+</li>
+<li>
+<a href='http://mn.audubon.org' target="_blank">(MN) Audubon Minnesota</a> http://mn.audubon.org 
+</li>
+<li>
+<a href='http://www.hawkridge.org' target="_blank">(MN) Hawk Ridge Bird Observatory</a> http://www.hawkridge.org 
+</li>
+<li>
+<a href='http://ny.audubon.org/ ' target="_blank">(NY) Audubon New York</a> http://ny.audubon.org/ 
+</li>
+<li>
+<a href='http://braddockbaybirdobservatory.wordpress.com/ ' target="_blank">(NY) Braddock Bay Bird Observatory</a> http://braddockbaybirdobservatory.wordpress.com/ 
+</li>
+<li>
+<a href='http://www.fws.gov/refuge/montezuma/' target="_blank">(NY) Iroquois National Wildlife Refuge</a> http://www.fws.gov/refuge/montezuma/ 
+</li>
+<li>
+<a href='http://www.fws.gov/northeast/iroquois/' target="_blank">(NY) Montezuma National Wildlife Refuge</a> http://www.fws.gov/northeast/iroquois/ 
+</li>
+<li>
+<a href='http://oh.audubon.org/' target="_blank">(OH) Audubon Ohio</a> http://oh.audubon.org/ 
+</li>
+<li>
+<a href='http://www.bsbobird.org/' target="_blank">(OH) Black Swamp Bird Observatory</a> http://www.bsbobird.org/
+</li>
+<li>
+<a href='http://www.obcinet.org' target="_blank">(OH) Ohio Bird Conservation Initiative</a> http://www.obcinet.org
+</li>
+<li>
+<a href='http://www.fws.gov/midwest/ottawa' target="_blank">(OH) Ottawa National Wildlife Refuge:</a>  http://www.fws.gov/midwest/ottawa
+</li>
+<li>
+<a href='http://www.freewebs.com/bandingbirdsof prey/thecedargrovestory.htm' target="_blank">(WI) Cedar Grove Ornithological Station</a> http://www.freewebs.com/bandingbirdsof prey/thecedargrovestory.htm
+</li>
+<li>
+<a href='http://www.wglbbo.org/about-us' target="_blank">(WI) Western Great Lakes Bird and Bat Observatory</a> http://www.wglbbo.org/about-us
+</li>
+<li>
+<a href='http://wisconsinaudubon.org/' target="_blank">(WI) Wisconsin Audubon Council</a> http://wisconsinaudubon.org/
+</li>
+<li>
+<a href='http://www.wisconsinbirds.org/' target="_blank">(WI) Wisconsin Bird Conservation Initiative</a> http://www.wisconsinbirds.org/
+</li>
+<li>
+<a href='http://www.wisconsinbirds.org' target="_blank">(WI) Wisconsin Stopover Initiative:</a> http://www.wisconsinbirds.org
+</li>
+<li>
+<a href='http://data.prbo.org/partners/mwadc' target="_blank">Midwest Avian Data Center:</a>  http://data.prbo.org/partners/mwadc
+</li>
+</ul>
+
+
+<h5 class="text-success" id="nationalscale">National-scale information and data on bird migration</h5>
+<ul>
+<li>
+<a href='http://www.avianknowledge.net' target="_blank">Avian Knowledge Network:</a> http://www.avianknowledge.net</a>
+</li>
+<li>
+<a href='http://www.birdcast.org' target="_blank>">BirdCast-real time predictions of bird migration:</a> http://www.birdcast.org 
+</li>
+<li>
+<a href='http://ebird.org/ebird/eBirdReports?cmd=Start' target="_blank>">Explore eBird data: Explore eBird Data:</a> http://ebird.org/ebird/eBirdReports?cmd=Start 
+</li>
+<li> 
+<a href='http://www.klamathbird.org/lamna/' target="_blank>">Landbird Monitoring Network of the Americas:</a> http://www.klamathbird.org/lamna/
+</li>
+<li>
+<a href='http://www.usanpn.org/' target="_blank>">National Phenology Network:</a> http://www.usanpn.org/ 
+</li>
+<li>
+<a href='http://virtual.clemson.edu/groups/birdrad/COMMENT.HTM' target="_blank>">Radar Ornithology: Introduction—info on use, interpretation, & application of NEXRAD to bird migration:</a> http://virtual.clemson.edu/groups/birdrad/COMMENT.HTM
+</li>
+</ul>
+
+
+<h5 class="text-success" id="collaborativeefforts">Collaborative efforts to protect birds (regional, national, international)</h5>
+<ul>
+<li>
+<a href='http://midwestbirdmonitoring.ning.com/' target="_blank>">Midwest Coordinated Bird Monitoring Partnership:</a> http://midwestbirdmonitoring.ning.com/
+</li>
+<li>
+Joint Ventures:
+<ul>
+<li>
+<a href='http://www.acjv.org/' target="_blank>">Atlantic Coast Joint Venture (covers NY Great Lakes shorelines)</a> http://www.acjv.org/
+</li>
+<li> 
+<a href='http://www.uppermissgreatlakesjv.org/' target="_blank>">Upper Mississippi and Great Lakes Region Joint Venture</a> http://www.uppermissgreatlakesjv.org/
+</li>
+</ul>
+<li>
+<a href='http://www.partnersinflight.org' target="_blank>">Partners in Flight:</a> http://www.partnersinflight.org
+</li>
+</ul>
+
+
+<h5 class="text-success" id="Birdlifehistoriesandbiology">Bird life histories and biology</h5>
+<ul>
+<li>
+<a href='http://bna.birds.cornell.edu/bna' target="_blank>">Birds of North America series (subscription):</a> http://bna.birds.cornell.edu/bna 
+</li>
+<li> 
+<a href='http://www.allaboutbirds.org/Page.aspx?pid=1189' target="_blank>">Cornell Laboratory of Ornithology All About Birds:</a> http://www.allaboutbirds.org/Page.aspx?pid=1189
+</li>
+<li> 
+<a href='http://nationalzoo.si.edu/SCBI/MigratoryBirds/default.cfm' target="_blank>">Smithsonian Migratory Bird Center:</a> http://nationalzoo.si.edu/SCBI/MigratoryBirds/default.cfm 
+</li>
+</ul> 
+
+
+<h5 class="text-success" id="NationalInternationalorganizations">National/International organizations that focus on protecting birds (for local Great Lakes branches see Regional Partners section)</h5>
+<ul>
+<li>
+<a href='http://www.abcbirds.org/' target="_blank>">American Bird Conservancy:</a> http://www.abcbirds.org/
+</li>
+<li>  
+<a href='http://www.audubon.org/' target="_blank>">National Audubon Society:</a> http://www.audubon.org/ 
+</li>
+<li> 
+<a href='http://www.birdlife.org/' target="_blank>">BirdLife International:</a> http://www.birdlife.org/
+</li>
+<li> 
+<a href='http://www.ducks.org/' target="_blank>">Ducks Unlimited:</a> http://www.ducks.org/ 
+</li>
+<li> 
+<a href='https://migbirdapps.fws.gov/' target="_blank>">U.S. Fish & Wildlife Service Migratory Bird Data Center:</a> https://migbirdapps.fws.gov/ 
+</li>
+</ul>  
+
+
+<h5 class="text-success" id="WindEnergy">Wind Energy (national, regional, state) </h5>
+<ul>
+<li>
+<a href='http://wind.tnc.org/awwi/#' target="_blank>">American Wind Wildlife Institute’s Wind and Wildlife Landscape Assessment Tool:</a> http://wind.tnc.org/awwi/#
+</li>
+<li>
+<a href='http://erie.glin.net/wind/' target="_blank>">Great Lakes Wind Atlas from the Great Lakes Wind Collaborative:</a> http://erie.glin.net/wind/
+</li>
+<li>
+<a href='http://conserveonline.org/library/wind-energy-great-lakes-regional-guidelines/view.html' target="_blank>">TNC’s Voluntary Guidelines for Great Lakes Wind Energy:</a> http://conserveonline.org/library/wind-energy-great-lakes-regional-guidelines/view.html
+</li>
+<li>
+COMING SOON-New York Wind and Wildlife interactive mapper
+</li>
+<li>
+<a href='http://www.dnr.state.oh.us/Home/wild_resourcessubhomepage/ResearchandSurveys/WildlifeWind/tabid/21467/Default.aspx' target="_blank>">OH DNR Wind Energy and Wildlife Page:</a>
+</li>
+<li>
+<a href='http://www.ohiodnr.com/LakeErie/WindEnergyRules/tabid/21234/Default.aspx' target="_blank>">OH DNR Offshore Wind Energy:</a> http://www.ohiodnr.com/LakeErie/WindEnergyRules/tabid/21234/Default.aspx
+</li>
+<li>
+<a href='http://oh.audubon.org/bsc/ibas.html' target="_blank>">Ohio IBA sites:</a> http://oh.audubon.org/bsc/ibas.html 
+</li>
+</ul>
+
+
+<h5 class="text-success" id="broadresource">Broad natural resource plans and other spatial data you may find useful: </h5>
+<ul>
+<li>
+<a href='http://conserveonline.org/workspaces/greatlakesblueprints/documents/all.html' target="_blank>">Biodiversity Blueprints for each of the following lakes (Michigan, Huron, Erie & Ontario):</a>  http://conserveonline.org/workspaces/greatlakesblueprints/documents/all.html 
+</li>
+<li>
+<a href='http://www.greatlakesmapping.org/' target="_blank>">Great Lakes Environmental Assessment and Mapping:</a> http://www.greatlakesmapping.org/  
+</li>
+<li>
+<a href='http://huron-erie.org/' target="_blank>">Huron-Erie Corridor (covers the St.Clair & Detroit Rivers from the south end of Lake Huron to the western basin of Lake Erie):</a> http://huron-erie.org/
+</li>
+<li>
+<a href='http://epa.gov/glnpo/' target="_blank>">Lakewide Management Plans (LaMPs), and the Lake Huron Bi-national Partnership (click on the lakes or the lake names):</a> http://epa.gov/glnpo/
+</li>
+<li>
+<a href='https://cida.usgs.gov/glri/geonetwork/srv/en/main.home' target="_blank>">USGS Great Lakes Restoration Initiative GeoNetwork:</a> https://cida.usgs.gov/glri/geonetwork/srv/en/main.home
+(includes Phragmites distribution maps)
+</li>
+</ul>
+
+<h5 class="text-success" id="newyork">New York: </h5>
+<ul>
+<li>
+COMING SOON-New York Wind and Wildlife interactive mapper
+</li>
+<li>
+<a href='http://www.nature.org/nybirds' target="_blank>">Citizen science study and maps of migratory stopover habitat along Lake Ontario in NY:</a> http://www.nature.org/nybirds  
+</li>
+</ul>
+
+<h5 class="text-success" id="ohio">Ohio: </h5>
+<ul>
+<li>
+<a href='http://gistest1.oit.ohio.gov/geodatadownload/osip.aspx' target="_blank>">Ohio Geographically Referenced Information Program (OGRIP):</a> http://gistest1.oit.ohio.gov/geodatadownload/osip.aspx
+(for LiDAR data relevant to shorebird/waterfowl habitat restoration design)
+</li>
+<li>
+<a href='https://www.dnr.state.oh.us/OhioCoastalAtlasProject/tabid/23320/Default.aspx' target="_blank>">Ohio Coastal Atlas Project:</a> https://www.dnr.state.oh.us/OhioCoastalAtlasProject/tabid/23320/Default.aspx  
+</li>
+<li>
+<a href='http://web4.audubon.org/bird/iba/' target="_blank>">Audubon Important Bird Areas:</a> http://web4.audubon.org/bird/iba/ 
+</li>
+<li>
+<a href='http://www.ducks.org/migrationmap?poe=hometxtNLDC' target="_blank>">Ducks Unlimited Migration Map:</a> http://www.ducks.org/migrationmap?poe=hometxtNLDC   
+</li>
+<li>
+<a href='http://www.ngdc.noaa.gov/mgg/greatlakes/greatlakes.html' target="_blank>">Great Lakes bathymetry data:</a> http://www.ngdc.noaa.gov/mgg/greatlakes/greatlakes.html   
+</li>
+</ul>
+
+         
+         
+   	 </div>
+   	 
+         </div>
+         	      
+         
+         </div>
+         
+  
+     </div>
+   
+    </div>
+
+     <div class="container containerSmall" id="footer">
+     
+     <!-- <footer>
+        <p>&copy; The Nature Conservancy & The University of Southern Mississippi, 2012</p>
+      </footer> -->
+
+    </div> 
+
+     </div>
+
+
+
+  </body>
+</html>
