@@ -48,7 +48,7 @@ define([
             // A class to be applied to the root node in our template
             baseClass: "maptip",
  
-            maptipson: true,
+            maptipson: false,
             
             defaultTitle: "Map Navigation (Pan and Zoom)",
             
