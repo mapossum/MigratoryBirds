@@ -264,7 +264,10 @@
 
       	//map.addLayer(featureLayer);
       	
-      	MigratoryBirdsLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://maps.usm.edu:6080/arcgis/rest/services/GreatLakes/MigratoryBirds/MapServer",{useMapImage:true, opacity:0.7});
+      	MigratoryBirdsLayer = new esri.layers.ArcGISDynamicMapServiceLayer(
+		//"http://maps.usm.edu:6080/arcgis/rest/services/GreatLakes/MigratoryBirds/MapServer"
+		"http://maps.usm.edu:6080/arcgis/rest/services/GreatLakes/MigratoryBirdsColors/MapServer"
+		,{useMapImage:true, opacity:0.7});
         
         dojo.connect(MigratoryBirdsLayer, "onLoad", function() {doLegend(dom.byId("legclicker"));toggleLayers});
        

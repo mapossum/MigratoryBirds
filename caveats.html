@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Migratory Birds - Caveats</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.io/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+    
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    
+    <link href="grmapper/css/grmapper.css" rel="stylesheet">
+    
+    <style type="text/css">
+      	
+	 
+	 /*a:link { text-decoration: none !important;
+		 	  text-transform: uppercase !important;
+	 }*/
+
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" type="text/css" href="http://serverapi.arcgisonline.com/jsapi/arcgis/3.3/js/esri/css/esri.css" />
+    
+    
+    <script type="text/javascript">
+    
+    var locationstring = window.location.href;
+// replace() the trailing / with nothing, split on the remaining /, and pop off the last one
+	var result = /\/([^\/]*)$/.exec(locationstring)[1];
+
+    indy = window.location.href.indexOf(result)
+    
+    if (indy > 0) {
+    	apploc = window.location.href.slice(0,indy);
+    } else {
+	    
+	    apploc = window.location.href
+    }
+    
+    var dojoConfig = {
+    async: 1,
+    cacheBust: 1,
+    parseOnLoad: true,
+    packages: [
+        { name: "bootstrap", location: apploc + "/dojoBootstrap" },
+        { name: "grmapper", location: apploc + "/grmapper"}
+    ]
+    };
+    </script>
+    <script type="text/javascript" src="http://serverapi.arcgisonline.com/jsapi/arcgis/?v=3.3"></script>
+    <script type="text/javascript">
+
+      
+      var map;
+      
+      var activatebyTitle;
+      
+      var downloaditems;
+      
+      var enabledownload;
+      
+      require([
+                "bootstrap/Alert",
+                "bootstrap/Button",
+                "bootstrap/Dropdown",
+                "grmapper/mbHeader",
+                "bootstrap/Modal",
+                "dojo/dom-class",
+                "dojo/dom-attr",
+                "dojo/query",
+                "dojo/ready",
+                "dojo/on",
+                "dojo/_base/lang",
+                "bootstrap/Tooltip",
+                "bootstrap/Popover",
+                "dojo/domReady!"
+            ], function (
+                Alert,
+            	bsButton,
+                Dropdown,
+                mbHeader,
+                Modal,
+                domClass,
+                domAttr,
+                query,
+                ready,
+                on,
+                lang,
+                Tooltip,
+                Popover
+            ) {
+	           
+
+	            
+	           ready(init) 
+	            
+	     
+	           function init() {
+	           
+	           
+	           			           
+	           	var topHeader = new mbHeader().placeAt("Topper");
+		        topHeader.startup();
+	          
+		           
+		           btns = query(".sidenav")//.onclick(function(e){alert(e)})
+		           
+		           dojo.forEach(btns, function(item, i){
+		             on(item, "click", activateSection); 
+		           });
+		         
+		         
+		         
+		       function activateSection(e) {
+		       
+		       		
+		       		btns = query(".sidenav")
+		       		dojo.forEach(btns, function(item, i){
+		              domClass.remove(item,"btn-success");
+		            });
+		         
+			       domClass.add(this,"btn-success")
+			       
+			       cpv = this.title;
+			       
+			       
+			       pvs = query(".pageview")
+		       		dojo.forEach(pvs, function(item, i){
+		              domAttr.set(item, "style", "display:none");
+		            });
+		            
+		           outcpv = query("." + cpv)
+		           domAttr.set(outcpv[0], "style", "display:");
+		            
+			       
+		       }  
+		           
+		           
+	           } 
+	            
+	
+            
+	            
+            });
+      
+      
+      
+ </script>
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../bootstrap/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../bootstrap/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../bootstrap/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../bootstrap/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body class="tundra">
+
+ 
+
+    <div class="container containerSmall">
+    
+    <div class="row" >
+    		 <div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 
+    		 </div>
+    	<div class="span1">
+    		 </div>
+    </div>
+    
+    <div class="row" id="Topper">
+  
+  
+    </div>
+        
+    <div class="row">
+
+    
+     </div>
+ 
+    </div>   
+    
+
+ 
+ 
+ 
+ 
+ </div>
+    
+ 
+ <div class="container containerSmall contentwall">    
+    
+         <div class="row">
+         
+         <div class="span3" style="padding-top:30px; padding-left:40px; width:250px">
+         <button class="btn btn-block btn-success sidenav" type="button" title="s1">Model Info</button>
+         <button class="btn btn-block sidenav" type="button" title="s2">Landbird Model Info</button>
+         <button class="btn btn-block sidenav" type="button" title="s3">Shorebird Model Info</button>	
+         <button class="btn btn-block sidenav" type="button" title="s4">Waterfowl Model Info</button>	
+         
+         </div>
+         
+  <div class="span8" >
+         
+
+      <div class="homeHeader">
+
+<div id="addthis_home">    
+       <!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-50c25229684f669d"></script>
+<!-- AddThis Button END -->
+</div>
+
+   </div>
+
+   	 <div class="pageview s1">
+        <h4 class="text-info">Please read: Important things to keep in mind when using any of the models</h4>
+        <p><b>Please keep scale in mind:</b> The results from this project provide guidance regarding the spatial distribution and factors affecting viability of stopover sites, and can be specifically incorporated into a wide range of plans and planning processes, including the Upper Mississippi River and Great Lakes Region Joint Venture; lake-wide conservation plans for Lakes Michigan, Huron, Erie and Ontario that have been developed by The Nature Conservancy; state wildlife action plans; and other regional plans that include protection of migratory birds, such as the Wisconsin Bird Conservation Initiative and Chicago Wilderness. The models produced with this project build upon stopover models developed earlier as we have incorporated results from new literature in these models.  Yet, the regional models lack some detail provided in earlier work where local, fine resolution data layers were available. Users at any one site may find it most valuable to review both the Great Lakes regional model and more localized models when applying this work for conservation purposes.  We suggest that the maps produced by the models and displayed on this web portal are best seen as a screening tool for choosing among options at larger spatial scales that should be complemented with local information on habitat quality when used to make conservation decisions.</p>
+		<p>
+		<b>Remember the resolution of the data:</b>  We aggregated raster data layers with a resolution of 30m (approximately 0.1 ha) pixels into 100 m (1 ha) pixels to approximate the minimum size of areas in which migrants move during any one stopover event.  The most common, or majority, land cover was assigned to each 1 ha pixel; some fine scale ecological information is lost with this approach. However, this aggregation facilitated data analysis and summarization, is more consistent with the spatial scale at which conservation actions are implemented than a 30 m resolution, and is similar to the approach taken by Stralberg et al. (2011).  However, we recognize that some areas &lt; ha may be very important for birds under some circumstances and may not be identified as stopover sites with this approach if they have been aggregated with a “non-habitat” landcover type.
+		</p>
+		<p>
+		<b>Habitat characteristics that we couldn’t “map” with GIS at the regional scale are still important:</b> Although we considered both landscape and site influences on stopover habitat selection and use by migrants in our models, both of which governed the choice of spatial scale of analysis, the models are based on landscape features because there are insufficient data layers describing site features, such as vegetation structure or plant species composition, at a regional or more local scale.
+		</p>
+		<p>
+		<b>Spring and fall migrations likely differ; these models are based on spring migrations:</b> The attributes selected, and values for each attribute, primarily reflect migrant distribution in the spring when landbirds, and possibly other bird groups, are most concentrated near large bodies of water like the Great Lakes.  However, it is likely that many important fall migration areas in our study area are captured by our models.
+		</p>
+		<p><b>The complete report describing the stopover models is available <a href="http://maps.usm.edu/migratorybirds/downloads/LCC_PhaseIStopover_Report_Final.pdf" target="_blank">here.</a></b></p>
+   	 </div>
+   	 
+   	 <div class="pageview s2" style="display:none">
+        <h4 class="text-info">How to Use the Map & Map Tools</h4>
+        <p>
+		This information is excerpted and modified from the <a href="http://maps.usm.edu/migratorybirds/downloads/LCC_PhaseIStopover_Report_Final.pdf" target="_blank">final report</a>, which contains the full explanation and rationale for the scoring criteria.
+		</p>  
+		<b><u><i>Landbird Scoring formula.</b></u></i>
+   	 </div>
+
+   	 <div class="pageview s3" style="display:none">
+        <h4 class="text-info">Header</h4>
+         		<p>
+				</p>
+         
+   	 </div>
+   	 
+   	 <div class="pageview s4" style="display:none">
+        <h4 class="text-info">Header</h4>
+         		<p></p>
+         
+   	 </div>
+   	 
+         </div>
+         	      
+         
+         </div>
+         
+  
+     </div>
+   
+    </div>
+
+     <div class="container containerSmall" id="footer">
+     
+     <!-- <footer>
+        <p>&copy; The Nature Conservancy & The University of Southern Mississippi, 2012</p>
+      </footer> -->
+
+    </div> 
+
+     </div>
+
+
+
+  </body>
+</html>
