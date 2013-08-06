@@ -77,7 +77,7 @@ define([
 		   
 		   startup: function() {
 		   
-		   	footerText = "The Upper Midwest and Great Lakes Landscape Conservation Cooperative of the U.S. Fish and Wildlife Service supported development of this website.  It is being served by…. (to be resolved).  TNC collaborated with the U.S. Fish and Wildlife Service, many conservation organizations, universities, and corporations to model stopover habitat and create this web portal.";
+		   	footerText = "The Upper Midwest and Great Lakes Landscape Conservation Cooperative of the U.S. Fish and Wildlife Service supported development of this website.  It is being served by University of Southern Mississippi.  TNC collaborated with the U.S. Fish and Wildlife Service, many conservation organizations, universities, and corporations to model stopover habitat and create this web portal.";
 
 
 		   	 this.inherited(arguments);
