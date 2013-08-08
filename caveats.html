@@ -119,7 +119,7 @@
 		         
 		       function activateSection(e) {
 		       
-		       		
+		       	
 		       		btns = query(".sidenav")
 		       		dojo.forEach(btns, function(item, i){
 		              domClass.remove(item,"btn-success");
@@ -127,8 +127,7 @@
 		         
 			       domClass.add(this,"btn-success")
 			       
-			       cpv = this.title;
-			       
+			       cpv = this.getAttribute("data-content");
 			       
 			       pvs = query(".pageview")
 		       		dojo.forEach(pvs, function(item, i){
@@ -136,10 +135,16 @@
 		            });
 		            
 		           outcpv = query("." + cpv)
-		           domAttr.set(outcpv[0], "style", "display:");
+		           
+		       		dojo.forEach(outcpv, function(item, i){
+		              domAttr.set(item, "style", "display:");
+		            });
+		            
+		            
+		           //domAttr.set(outcpv[0], "style", "display:");
 		            
 			       
-		       }  
+		       }   
 		           
 		           
 	           } 
@@ -209,10 +214,12 @@
          <div class="row">
          
          <div class="span3" style="padding-top:30px; padding-left:40px; width:250px">
-         <button class="btn btn-block btn-success sidenav" type="button" title="s1">Model Info</button>
-         <button class="btn btn-block sidenav" type="button" title="s2">Landbird Model Info</button>
-         <button class="btn btn-block sidenav" type="button" title="s3">Shorebird Model Info</button>	
-         <button class="btn btn-block sidenav" type="button" title="s4">Waterfowl Model Info</button>	
+         <button class="btn btn-block btn-success sidenav" type="button" data-content="s1">Model Info</button>
+         <button class="btn btn-block sidenav" type="button" data-content="s2">Landbird Model Info</button>
+         <button class="btn btn-block sidenav" type="button" data-content="s3">Shorebird Model Info</button>	
+         <button class="btn btn-block sidenav" type="button" data-content="s4">Waterfowl Model Info</button>	
+		 
+		 <button class="btn btn-block sidenav" type="button" data-content="ag">Setting Stopover Conservation Goals</button>
          
          </div>
          
@@ -220,6 +227,8 @@
          
 
       <div class="homeHeader">
+	  
+	  		<h2 style="position:absolute;top:80px;left:450px;"> Model Attributes <br>&amp; Caveats</h2> 
 
 <div id="addthis_home">    
        <!-- AddThis Button BEGIN -->
@@ -238,6 +247,7 @@
 
    </div>
 
+   
    	 <div class="pageview s1">
         <h4 class="text-info">Please read: Important things to keep in mind when using any of the models</h4>
         <p><b>Please keep scale in mind:</b> The results from this project provide guidance regarding the spatial distribution and factors affecting viability of stopover sites, and can be specifically incorporated into a wide range of plans and planning processes, including the Upper Mississippi River and Great Lakes Region Joint Venture; lake-wide conservation plans for Lakes Michigan, Huron, Erie and Ontario that have been developed by The Nature Conservancy; state wildlife action plans; and other regional plans that include protection of migratory birds, such as the Wisconsin Bird Conservation Initiative and Chicago Wilderness. The models produced with this project build upon stopover models developed earlier as we have incorporated results from new literature in these models.  Yet, the regional models lack some detail provided in earlier work where local, fine resolution data layers were available. Users at any one site may find it most valuable to review both the Great Lakes regional model and more localized models when applying this work for conservation purposes.  We suggest that the maps produced by the models and displayed on this web portal are best seen as a screening tool for choosing among options at larger spatial scales that should be complemented with local information on habitat quality when used to make conservation decisions.</p>
@@ -254,25 +264,401 @@
    	 </div>
    	 
    	 <div class="pageview s2" style="display:none">
-        <h4 class="text-info">How to Use the Map & Map Tools</h4>
+        <h4 class="text-info">Landbird Model Info</h4>
         <p>
 		This information is excerpted and modified from the <a href="http://maps.usm.edu/migratorybirds/downloads/LCC_PhaseIStopover_Report_Final.pdf" target="_blank">final report</a>, which contains the full explanation and rationale for the scoring criteria.
 		</p>  
+		<p>
 		<b><u><i>Landbird Scoring formula.</b></u></i>
-   	 </div>
+		</p>
+		<p>
+		From coastline to 1 km inland, for all suitable landcover types:
+		<p>
+		<div style="margin-right:50px;margin-left:50px;">Landbird Score = 5</div>
+		<p>
+		From coastline to 1 km inland, for all suitable landcover types:
+		<p>
+		<div style="margin-right:50px;margin-left:50px;">Landbird Score (max score = 4)	=  	score for distance from a Great Lake OR connecting water body
++ score for presence of landcover type classified as suitable habitat
++ score for proportion of landscape in suitable landcover type within 5 km of a 1 ha pixel
++ score for distance from non- Great Lakes permanent water bodies
+		</div>
+		
+		<br>
+		<div style="margin-right:50px;">
+		<b>Table 1.</b>  Scoring criteria for landbird stopover habitat within 25 km of Lakes Michigan, Huron, Erie, Ontario and connecting water bodies.  For this bird group, we divided the study area into two zones – within 1 km of the shoreline, and ≥ 1 km - 25 km from a Great Lake or connecting water body. This scoring reflects the assumption that all habitat very close to a Great Lake or connecting water body will be heavily used by landbirds, regardless of habitat type, context, or distance to another water body. “Pixels” in this table refer to the 1 ha scale pixels developed from the 30 m scale landcover
+		datasets (see Appendix 1 and 2 in the full report).
+		</div>
+		
+		<br>
+		<div style="margin-right:50px;margin-left:50px;">
+		<table width="100%">
+		
+		<tr>
+			<td><strong>Landbird stopover criteria – Areas within 1 km of a Great Lake or connecting water body.</strong></td>
+		</tr>
 
-   	 <div class="pageview s3" style="display:none">
-        <h4 class="text-info">Header</h4>
-         		<p>
-				</p>
-         
-   	 </div>
+		<tr>
+		<td>
+		<ol>
+		<li>Landcover classified as suitable habitat.
+<i>Source data layers:  TNC New Vector Shoreline for distance from shore, landcover CCAP 2006 (US) /PLC 1999 (Canada), and “ permeable” urban areas (NLCD 2006).</i>
+		</ol></li>
+		
+		<div style="margin-right:50px;margin-left:50px;">
+		5 = Suitable habitat (see classes below, including urban that is greater than 72% permeable
+surfaces.<br>
+0 = Not suitable habitat; classes such as open water, and urban that is less than 72% permeable.
+		</div>
+		
+		</td>
+		
+		</tr>
+
+
+		<tr>
+			<td><strong>Landbird stopover criteria -  areas between 1- 25 km from a Great Lake or connecting water body</strong></td>
+		</tr>
+
+		<tr>
+		<td>
+		<ol>
+		<li>Landcover classified as suitable habitat.
+<i>Source data layers: Habitat layer (CCAP/PLC classes) +  permeable urban [NLCD 2006])</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = All landcover types that represent natural cover, except for bare land, open water, or palustrine aquatic bed. See description below for more details. <br>
+0.5 = Landcover types that have some habitat value, but less than those above: Hay, pasture,
+or palustrine wetland classes, and urban that is greater than 72% permeable. <br>
+0 = classes not included above, such as open water, urban that is less than 72% permeable.
+		</li>
+
+		<li>Distance from a Great Lake or connecting water body.
+<i>Applied only to areas with a “suitable habitat” score of 1 or 0.5, distance assessed from the TNC New Vector Shoreline.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = 1 km<br>
+		0 = 25 km<br>
+		In between, score is based on an exponential declining function (e<sup>-x</sup>) from 1 to 0.
+		</li>		
+
+		<li>Proportion of suitable habitat within a 5 km radius.
+<i>Source: Suitable habitat layer (types scoring 1 or 0.5) assessed for each pixel in a 5 km moving window.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = High habitat cover (>40% in 5 km)<br>
+1 = Rare habitat (habitat in an area with few other habitats available, less than 15% in 5 km) <br>
+0 = Intermediate (greater than 15% but less than 40%)
+
+		</li>	
+
+		<li>Distance from other water bodies.
+<i>Source data layers for identifying water bodies: CanVec Hydro, NHD Plus. CCAP, PLC.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = Less than 100 m from lake, pond, rivers and streams, and wetlands<br>
+0 = Greater than 100 m from lake, pond, rivers and streams, and wetlands
+
+
+		</li>
+		
+		
+		</ol>
+		
+
+		</div>
+		
+		</td>
+		
+		</tr>
+		
+		
+		</table>
+
+	
+Please keep the following in mind when using the Landbird Model:
+<ul>
+<li>
+Most applicable to forest- and shrub-dependent species; somewhat useful for raptors; not applicable to species such as Horned Lark (<i>Eremophila alpestris</i>), American Pipit (<i>Anthus rubescens</i>), and Snow Bunting (<i>Plectrophenax nivalis</i>), which are primarily found in agricultural lands, bare soil and unconsolidated shoreline
+</li>
+<li>
+The relative importance of a site may change within a season, between years, and by species (e.g., Brawn and Stotz 2001, Simons et al. 2004) due to short-term extrinsic factors such as weather and long- term factors such as successional change, changes in abundance of plant species of a site over time, climate change, and modifications of the surrounding landscape.  
+</li>
+<li>
+Habitat characteristics likely influence migrant abundance and site quality for migrants that stop at a site, but we could not model these effects at the relevant scales in this project.  Generally, it appears there is a positive association of migrating landbirds with 1) more complex vegetation structure; 2) early successional habitat, especially during fall migration; 3) perhaps higher plant species richness; and 4) relatively abundant food resources (Hutto 1985, Martin and Karr 1986, Rodewald and Brittingham 2004, Buler et al. 2007).  When considering a site for action, we recommend a site visit to assess these features. 
+</li>
+</ul>
+
+
+	</div>
+		
+</div>
+
+
+
    	 
-   	 <div class="pageview s4" style="display:none">
-        <h4 class="text-info">Header</h4>
-         		<p></p>
+<div class="pageview s3" style="display:none">
+        <h4 class="text-info">Shorebird Model Info</h4>
+        <p>
+		This information is excerpted and modified from the <a href="http://maps.usm.edu/migratorybirds/downloads/LCC_PhaseIStopover_Report_Final.pdf" target="_blank">final report</a>, which contains the full explanation and rationale for the scoring criteria.
+		</p>  
+		<p>
+		<b><u><i>Shorebird Scoring formula.</b></u></i>
+		</p>
+	
+		
+		Shorebird Score = score for landcover type associated with suitable habitat 
+		<div style="margin-right:50px;margin-left:50px;">
++ score for amount of wetland cover within 3 km radius of suitable landcover type <br>
++ score for patch size <br>
++ score for adjacent cover type within 100 m of suitable landcover type <br>
++ score for distance from a Great Lake or connecting water body <br>
+		</div>
+		
+		<br>
+		<div style="margin-right:50px;">
+		<b>Table 2.</b> Conservation priority scores for shorebird stopover habitat within 25 km of Lakes Michigan, Huron, Erie, Ontario and connecting water bodies. Landscape cover type was scored first, and only patches with suitable habitat were scored for the remaining four attributes.
+		</div>
+		
+		<br>
+		<div style="margin-right:50px;margin-left:50px;">
+		<table width="100%">
+
+		<tr>
+			<td><strong>Shorebird stopover attributes</strong></td>
+		</tr>
+
+		<tr>
+		<td>
+		<ol>
+		<li>Landcover classified as suitable habitat.
+<i>Source data: CCAP(US 2006) &amp; PLC (1999) for landcover, and STATSGO (US) &amp; SLR (Canada) for hydric soils.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = Emergent wetlands <br>
+0.5 = Agricultural fields with hydric soils <br>
+0.25 = Beach
+
+		</li>
+		
+
+		<li>Amount of wetland cover within 3 km radius of suitable landcover type.
+<i>Source data: CCAP (US 2006) and PLC (Canada 1999) - applied to any pixels scoring 0.25 or higher in suitable habitat score.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = >40% wetland cover in 3 km radius window <br>
+0.5 = 15-40% wetland cover <br>
+0.25 = less than 15% wetland cover
+
+
+		</li>	
+
+		<li>Patch size (patch can include more than one of the “suitable habitat” landcover types shown above)
+<i>Source data: same as suitable habitat.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = ≥10 ha (greater than 25 acres) <br>
+0.5 = less than 10 ha (less than 25 acres)
+
+
+
+		</li>
+		
+		<li>Adjacent cover type w/in 100 m of the pixel of suitable habitat.  Describes presence/absence of a buffer from developed areas or forests.<i>Source data: same as suitable habitat.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = Undeveloped, non-forest <br>
+0.5 = Undeveloped, forest <br>
+0 = Developed
+
+
+		</li>
+
+		<li>Distance from a Great Lake or connecting water body.<i>Source data: TNC New Vector Shoreline.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = ≤3.2 km from shoreline <br>
+0.5 = >3.2 km and ≤16 km from shoreline <br>
+0 = >16 km from shoreline
+
+
+
+		</li>
+		
+		
+		</ol>
+		
+
+		</div>
+		
+		</td>
+		
+		</tr>
+		
+		
+		</table>
+
+	
+Please keep the following in mind when using the Shorebird Model:
+<ul>
+<li>
+We have not included shorebird species, such as American Golden-Plover, whose primary stopover habitat is dry, upland fields (O’Neal and Alessi 2008) with this ranking system.
+</li>
+<li>
+Shorebird use of any one site may vary with changes in Great Lakes water levels, precipitation before and during migration and, in the case of managed marshes, with the timing of water-level management (Potter et al. 2007).
+</li>
+<li>
+A mosaic of habitats with varying water depths (up to 5 cm deep and 5-20 cm deep) will likely benefit the largest number of shorebird species given the wide range of habitats used by different species (Potter et al. 2007), but this is very difficult to characterize with existing data layers. 
+</li>
+</ul>
+
+
+	</div>
+		
+</div>
+
+
+
+<div class="pageview s4" style="display:none">
+        <h4 class="text-info">Waterfowl Model Info</h4>
+        <p>
+		This information is excerpted and modified from the <a href="http://maps.usm.edu/migratorybirds/downloads/LCC_PhaseIStopover_Report_Final.pdf" target="_blank">final report</a>, which contains the full explanation and rationale for the scoring criteria.
+		</p>  
+		<p>
+		<b><u><i>Waterfowl Scoring formula.</b></u></i>
+		</p>
+	
+		
+		Waterfowl Score = score for landcover type associated with suitable habitat
+		<div style="margin-right:50px;margin-left:50px;">
++ score for amount of wetland cover within 3 km radius of suitable landcover type + score for patch size <br>
++ score for adjacent cover type within 100 m  of suitable landcover type <br>
++ score for Great Lakes water depth (bathymetry)
+
+		</div>
+		
+		<br>
+		<div style="margin-right:50px;">
+		<b>Table 3.</b> Conservation priority scores for waterfowl stopover habitat within 25 km of Lakes Michigan, Huron, Erie, Ontario and connecting water bodies.
+		</div>
+		
+		<br>
+		<div style="margin-right:50px;margin-left:50px;">
+		<table width="100%">
+
+		<tr>
+			<td><strong>Waterfowl stopover attributes</strong></td>
+		</tr>
+
+		<tr>
+		<td>
+		<ol>
+		<li>Landcover classified as suitable habitat.
+<i>Source data: CCAP(US 2006) &amp; PLC (1999) for landcover, and STATSGO (US) &amp; SLR (Canada) for hydric soils.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = Mixed emergent marsh adjacent to open water<br>
+0.75 = Open water or emergent marsh, not adjacent<br>
+0.25 = Palustrine forested wetlands, agricultural fields with hydric soils
+
+
+		</li>
+		
+
+		<li>Amount of wetland cover within 3 km radius of suitable landcover type.
+<i>Source data:  CCAP (US 2006) and PLC (Canada 1999) - applied to any pixels scoring 0.25 or higher in suitable habitat score.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = >40% wetland cover in 3 km radius window <br>
+0.5 = 15-40% wetland cover <br>
+0.25 = less than 15% wetland cover
+
+
+		</li>	
+
+		<li>Patch size (patch can include more than one of the “suitable habitat” landcover types shown above)
+<i>Source data: same as suitable habitat.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = ≥16 ha (40 acres)<br>
+0.5 = ≥1 ha (2.5 acres) and less than 16 ha (40 acres) <br>
+0.25 = less then 1 ha (2.5 acres)
+
+		</li>
+		
+		<li>Adjacent cover type with in 100 m of the pixel of suitable habitat.  Describes presence/absence of a buffer from developed areas or forests.<i>Source data: same as suitable habitat.</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = Undeveloped, non-forest <br>
+0.5 = Undeveloped, forest <br>
+0 = Developed; agricultural fields with hydric soils
+
+
+		</li>
+
+		<li>Great Lakes water depth<i>Source data:  NOAA Bathymetry</i>
+
+<div style="margin-right:50px;margin-left:50px;">
+		1 = less than 4 meters <br>
+0.5 = 4-6 meters <br>
+0.25 = greater than 6 meters ≤30 m <br>
+0  = greater than 30 m
+
+
+
+
+		</li>
+		
+		
+		</ol>
+		
+
+		</div>
+		
+		</td>
+		
+		</tr>
+		
+		
+		</table>
+
+	
+Please keep the following in mind when using the Waterfowl Model:
+<ul>
+<li>
+The distribution of waterfowl in the open waters of the Great Lakes is poorly known.   However, recent work (Norris and Lott 2012) indicates that many waterfowl are concentrated closer to the shores of Lake Erie than in offshore waters.  
+</li>
+<li>
+Our depiction of waterfowl distribution during migration almost certainly overstates areas important for waterfowl during migration (e.g., Eastern Habitat Joint Venture 2007) and will be more refined as results from current research, especially in offshore waters, become available.
+</li>
+<li>
+Anthropogenic disturbances including shipping lanes, marinas, public access sites to water, boating traffic and hunting can substantially modify use of otherwise suitable habitat by reducing the amount of time available for foraging or by displacing birds (Knapton et al. 2000, Schummer and Eddelman 2003, Pease et al. 2005, Dooley et al. 2010), but we did not have regionally consistent datasets for these and so did not model their influence.  These disturbances should be considered when contemplating action for waterfowl and evaluating the relative quality of different sites.
+</li>
+</ul>
+
+
+	</div>
+		
+</div>
+
+
+       	 <div class="pageview ag">
+        <h4 class="text-info">Setting Stopover Conservation Goals</h4>
+         		<p>Although very challenging to establish, articulating conservation goals, based on scientific, operationally realistic, and objective criteria, provides a foundation for estimating the magnitude of work and financial resources needed to achieve conservation results.  Although goals are never perfect, they provide important guidelines to direct our work and, when accomplished, when to celebrate and when to focus resources on other conservation goals.</p>
+         		
+				<p>For landbirds, we set a goal of 40% of the landscape be in natural cover within  3 miles (5 km) of a site.  The basis for this goal is that several studies, though not all, suggest that landbirds are more crowded, and gain less weight, where less than 15% of the landscape is in suitable habitat compared to landscapes with >15% of suitable habitat and especially with >40% suitable habitat.  We think that the scientific literature is sufficiently consistent to articulate this goal to ensure the health of migrating landbirds.  We recognize that this goal cannot be achieved everywhere, especially in highly developed urban and some agricultural areas.   In these areas goals might focus on improving the quality of existing sites where protecting more habitat is unlikely or can be only be done at very small scales. </p>
+				
+				<p>We have not yet set goals for shorebirds or waterfowl, as there is insufficient information for shorebirds and waterfowl to define criteria for establishing goals. 
+         		</p>
+				
+         		<p>More research will improve our ability to establish goals but we now have, at least, a conservation goal to measure our progress toward providing safe passage of landbirds through the Great Lakes region. 
+	         	</p> 
          
-   	 </div>
+   	 </div> 
+	 
+	 
+
+	 
    	 
          </div>
          	      

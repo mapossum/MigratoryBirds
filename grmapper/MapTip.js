@@ -48,7 +48,7 @@ define([
             // A class to be applied to the root node in our template
             baseClass: "maptip",
  
-            maptipson: false,
+            maptipson: true,
             
             defaultTitle: "Map Navigation (Pan and Zoom)",
             
@@ -85,7 +85,7 @@ define([
           
          
           
-          // update the tooltip as the mouse moves over the map
+/*           // update the tooltip as the mouse moves over the map
           dojo.connect(this.map, "onMouseMove", this, function(evt) {
           
           	// dojo.style(tooltiper, "display", "");
@@ -143,11 +143,48 @@ define([
           dojo.connect(this.map, "onMouseOut", function(evt){
             dojo.style(tooltiper, "opacity", 0.0);
           });
-     
+      */
            
            this.map.tip = this;   
 			 
 
+		   },
+		   
+		   hide: function() {
+		   
+		   tooltiper = this.domNode;
+		     
+		   b = baseFx.animateProperty({
+				   		node: this.domNode,
+				   		onEnd: lang.hitch(this, function() {tooltiper.style.display = "none";}),
+				   		properties: {
+					   		opacity: { start: 0.8, end: 0 }
+					   		},
+					   		duration: 1000
+			}); 
+			
+			b.play();
+		   
+		   },
+		   
+		   show: function() {
+		   
+		   
+		   tooltiper = this.domNode;
+		   
+		   tooltiper.style.display = "";
+		   
+		   b = baseFx.animateProperty({
+				   		node: this.domNode,
+				   		//onEnd: lang.hitch(this, function() {tooltiper.style.display = "none";}),
+				   		properties: {
+					   		opacity: { start: 0, end: 0.8 }
+					   		},
+					   		duration: 1000
+			}); 
+			
+			b.play();
+		   
 		   },
 		   
 		   setContent: function(content) {
