@@ -156,6 +156,9 @@ define([
 			     //this.jobs = ["",""];
 				 
 				 //this.inputLayers.push(e.inputLayer);
+				 
+				 this.inputLabel0 = e.label;
+				 
 				 this.inputLayer0 = e.inputLayer;
 				 
 				 sy = new esri.symbol.SimpleFillSymbol(esri.symbol.SimpleFillSymbol.STYLE_SOLID, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([10, 240, 250]), 2), new dojo.Color([0, 250, 255, 0.25]));
@@ -283,6 +286,9 @@ define([
 			    //alert(this.inputCollector)
 			    
 		   		//this.inputLayers.push(e.inputLayer);
+				
+				this.inputLabel1 = e.label;
+				
 		   		this.inputLayer1 = e.inputLayer;
 		   		
 		   		this.container.processAnimationStart();
@@ -363,7 +369,7 @@ define([
 			 	//alert(this.map.graphicsLayerIds);
 			 	
 				 mbres = query("#" + this.domNode.id + " .mbResults")[0];
-				 resultWidget = new mbResult({map:this.map,inputLayer:[this.inputLayer0,this.inputLayer1],resultSet:this.outputs,stype:this.stype}).placeAt(mbres);
+				 resultWidget = new mbResult({map:this.map,inputLayer:[this.inputLayer0,this.inputLayer1],resultSet:this.outputs,stype:this.stype,label:[this.inputLabel0,this.inputLabel1]}).placeAt(mbres);
 				 
 				 console.log(this.outputs)
 				 this.hidesteps("all");

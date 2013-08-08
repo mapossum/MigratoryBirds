@@ -265,6 +265,10 @@ define([
 		   	   
 		   submitFeatures: function(e) {
 
+				//alert(e.label);
+				
+				this.inputLabel = e.label;
+		   
 		   		this.inputLayer = e.inputLayer;
 		   		
 		   		this.container.processAnimationStart();
@@ -344,7 +348,7 @@ define([
 			 if (this.processedResults == 4) {
 				 
 				 mbres = query("#" + this.domNode.id + " .mbResults")[0];
-				 resultWidget = new mbResult({map:this.map,inputLayer:this.inputLayer,resultSet:this.outputs,stype:this.stype}).placeAt(mbres);
+				 resultWidget = new mbResult({map:this.map,inputLayer:this.inputLayer,resultSet:this.outputs,stype:this.stype, label:this.inputLabel}).placeAt(mbres);
 				 
 				 this.hidesteps("all");
 			 }

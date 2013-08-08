@@ -25,6 +25,8 @@ define([
 	"dojox/charting/plot2d/StackedBars",
 	"dojox/charting/plot2d/Pie",
 	"dojox/charting/widget/Legend",
+	"dijit/form/Button",
+	"dijit/Dialog",
 	"dojo/aspect",
 	"dijit/form/CheckBox",
 	"dojo/parser",
@@ -58,6 +60,8 @@ define([
     StackedBars,
     Pie,
     Legend,
+	Button,
+	Dialog,
     aspect,
     CheckBox,
     parser,
@@ -155,8 +159,28 @@ define([
 			   checked: true,
 			   onChange: lang.hitch(this,function(b){ if (b == true) {this.inputLayer[1].show()} else {this.inputLayer[1].hide()}})
 			   }, cbs[0]);
-			   			   
 
+			lab = dojo.query("#" + this.domNode.id + " .inputLabelLeft")
+			
+			//console.log(lab[0]);
+			
+			lab[0].innerHTML = this.label[0];
+			lab[1].innerHTML = this.label[0];
+			
+			lab = dojo.query("#" + this.domNode.id + " .inputLabelRight")
+			
+			//console.log(lab[0]);
+			
+			lab[0].innerHTML = this.label[1];
+			lab[1].innerHTML = this.label[1];
+			
+			toptool = dijit.getEnclosingWidget(dijit.getEnclosingWidget(this.domNode.parentNode).domNode.parentNode);
+			
+			toplab = dojo.query("#" + toptool.domNode.id + " .tooltitle")
+			
+			toplab[0].innerHTML = toplab[0].innerHTML + " - " + this.label[0] + " Vs. " + this.label[1];			  
+			  
+						   
 			  } else {
 			  
 		     cbs = dojo.query(iac[0]).children();
@@ -167,6 +191,18 @@ define([
 			   checked: true,
 			   onChange: lang.hitch(this,function(b){ if (b == true) {this.inputLayer.show()} else {this.inputLayer.hide()}})
 			   }, cbs[0]);
+			
+			lab = dojo.query("#" + this.domNode.id + " .inputLabel")
+			
+			//console.log(lab[0]);
+			
+			lab[0].innerHTML = this.label;
+			
+			toptool = dijit.getEnclosingWidget(dijit.getEnclosingWidget(this.domNode.parentNode).domNode.parentNode);
+			
+			toplab = dojo.query("#" + toptool.domNode.id + " .tooltitle")
+			
+			toplab[0].innerHTML = toplab[0].innerHTML + " - " + this.label;
 			   			   
 			 }  			   
 			   			   			 
@@ -177,7 +213,8 @@ define([
 			   		this.displayModelResults(this.resultSet[0],"leftSide");
 			   		this.displayModelResults(this.resultSet[1],"rightSide");
 			   		} else {
-				   	this.displayModelResults(this.resultSet);	
+				   	this.displayModelResults(this.resultSet);
+	
 			   		}
 			   } else {
 			   	 if (this.dual) {
@@ -187,7 +224,161 @@ define([
 				   	this.displayHabitatResults(this.resultSet);	
 			   		}
 			   }
-		        
+
+			 if (this.dual) {
+
+			 
+			 
+			 
+			 
+				} else {
+				
+			 ebp = query("#" + this.domNode.id + " .exporter");  
+	  
+		
+			 bn = ebp[0];
+	   
+   
+		this.exportButton = new Button({
+			label: "Export Report",
+			onClick: lang.hitch(this,function(){
+
+			outcontent = "";
+			
+			/* 			
+			outcontent = "Chart Data (Should have downloaded, Copy and Paste if nessessary):<br>"
+			
+			csvData = new Array();
+			
+			atts = new Array();
+			for (f in feats) {
+		
+				console.log(feats[f].attributes);
+				if (f==0) {
+				   for (a in feats[f].attributes) {
+				    atts.push(a);
+					}
+				csvData.push(atts);
+				outcontent = outcontent + atts.join(",");
+				outcontent = outcontent + "<br>"
+				}
+				
+				cfd = new Array();
+				
+				for (a in feats[f].attributes) {
+					
+					cfd.push(feats[f].attributes[a])
+				
+				}
+				csvData.push(cfd);
+				outcontent = outcontent + cfd.join(",");
+				outcontent = outcontent + "<br>"				
+		
+			}
+			
+			//var data = [["name1", "city1", "some other info"], ["name2", "city2", "more info"]];
+			var csvContent = "data:text/csv;charset=utf-8,";
+			csvData.forEach(function(infoArray, index){
+
+				dataString = infoArray.join(",");
+				csvContent += index < infoArray.length ? dataString+ "\n" : dataString;
+
+			}); 
+			
+			encodedUri = encodeURI(csvContent);
+			window.open(encodedUri);
+	*/
+	
+		   if (this.stype == "model") {
+
+					outcontent = outcontent + "<br>Right-click on the links below to download each chart. <br>"
+
+					sbh = query("#" + this.domNode.id + " .LandCoverSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					
+					// MUST FIX IN IE!!!!!
+					//outcontent = outcontent + "<img src=\"" + dataUrl1 + "\"/><br>"
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Land Cover Summary Chart </a><br>"
+
+					sbh = query("#" + this.domNode.id + " .NaturalLandCoverChart");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					//console.log(sbhcanvas);
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Natural Land Cover Chart </a><br>"
+					
+					sbh = query("#" + this.domNode.id + " .ShoreBirdSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Shorebirds Habitat Summary Chart </a><br>"
+					
+					sbh = query("#" + this.domNode.id + " .WaterBirdSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl2 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl2 +  "' target='_blank'> Download Waterfowl Habitat Summary Chart </a><br>"
+		 
+					sbh = query("#" + this.domNode.id + " .LandBirdSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl3 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl3 +  "' target='_blank'> Download Landbirds Habitat Summary Chart </a><br>"	
+				
+				
+		   } else {
+
+
+					outcontent = outcontent + "<br>Right-click on the links below to download each chart. <br>"
+					
+					sbh = query("#" + this.domNode.id + " .ShoreBirdHabitatSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Shorebirds Habitat Summary Chart </a><br>"
+					
+					sbh = query("#" + this.domNode.id + " .WaterBirdHabitatSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl2 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl2 +  "' target='_blank'> Download Waterfowl Habitat Summary Chart </a><br>"
+		 
+					sbh = query("#" + this.domNode.id + " .LandBirdHabitatSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl3 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl3 +  "' target='_blank'> Download Landbirds Habitat Summary Chart </a><br>"				
+
+				}
+		   
+	
+
+			
+			myDialog = new Dialog({
+					title: "Report",
+					content: outcontent,  //"<img src=" + dataUrl + " />",
+					style: "width: 600px, height: 300px"
+			});
+			
+			myDialog.show();
+			
+        })
+		
+		}, bn);
+		
+		 }       
 			 
 		   },
 		  
@@ -353,8 +544,8 @@ define([
 			   var chart1 = new Chart(cloc[0], {stroke: "black"});
 			   //chart1.addPlot("default", { type: "Bars", gap: 2});
 			   chart1.addPlot("default", {type: "StackedBars", gap: 2});
-			   chart1.addAxis("x", {minorTicks: false, title:"Area (Hectares)", titleOrientation:"away"});
-			   chart1.addAxis("y", {vertical: true, leftBottom: true, labels: labelarray, minorTicks: false});
+			   chart1.addAxis("x", {minorTicks: false, title:"Area (Hectares)", titleOrientation:"away", htmlLabels: false});
+			   chart1.addAxis("y", {vertical: true, leftBottom: true, labels: labelarray, minorTicks: false, htmlLabels: false});
 
 			   //chart1.setTheme(Wetland);
 			   chart1.addSeries("Protected",protecteddataarray,{stroke: {color:color}, fill: color});
@@ -558,6 +749,7 @@ define([
 				        //labels: false,
 				        fontColor: "black",
 				        labelOffset: -40,
+						htmlLabels: false,
 				        radius: 100
 				    })
 				    
@@ -565,8 +757,8 @@ define([
 				    opercent = ((natTable["Other"] / (natTable["Other"] + natTable["Natural"]))*100).toFixed(1)
 				    
 				    chartTwo.addSeries("Series A", [
-				        {y: natTable["Natural"], text: "Natural<br>(" + natpercent + "%)", stroke: "black", tooltip: "Natural (" + natpercent + "%)", fill: "#081", htmlLabels: false},
-				        {y: natTable["Other"], text: "Other<br>(" + opercent + "%)", stroke: "black", tooltip: "Other (" + opercent + "%)" , fill: "#811", htmlLabels: false},
+				        {y: natTable["Natural"], text: "Natural (" + natpercent + "%)", stroke: "black", tooltip: "Natural (" + natpercent + "%)", fill: "#081", htmlLabels: false},
+				        {y: natTable["Other"], text: "Other (" + opercent + "%)", stroke: "black", tooltip: "Other (" + opercent + "%)" , fill: "#811", htmlLabels: false},
 				    ]);
 				    
 				    chartTwo.render(); 

@@ -609,8 +609,8 @@ define([
 			   var chart1 = new Chart(cloc[0], {stroke: "black"});
 			   //chart1.addPlot("default", { type: "Bars", gap: 2});
 			   chart1.addPlot("default", {type: "StackedBars", gap: 2});
-			   chart1.addAxis("x", {minorTicks: false, title:"Area (Hectares)", titleOrientation:"away"});
-			   chart1.addAxis("y", {vertical: true, leftBottom: true, labels: labelarray, minorTicks: false});
+			   chart1.addAxis("x", {minorTicks: false, title:"Area (Hectares)", titleOrientation:"away", htmlLabels: false});
+			   chart1.addAxis("y", {vertical: true, leftBottom: true, labels: labelarray, minorTicks: false, htmlLabels: false});
 
 			   //chart1.setTheme(Wetland);
 			   chart1.addSeries("Protected",protecteddataarray,{stroke: {color:color}, fill: color});
@@ -767,8 +767,8 @@ define([
 			   var chart1 = new Chart(cloc[0], {stroke: "black"});
 			   //chart1.addPlot("default", { type: "Bars", gap: 2});
 			   chart1.addPlot("default", {type: "StackedBars", gap: 2});
-			   chart1.addAxis("x", {minorTicks: false, title:"Area (Hectares)", titleOrientation:"away"});
-			   chart1.addAxis("y", {vertical: true, leftBottom: true, labels: labelarray, minorTicks: false});
+			   chart1.addAxis("x", {minorTicks: false, title:"Area (Hectares)", titleOrientation:"away", htmlLabels: false});
+			   chart1.addAxis("y", {vertical: true, leftBottom: true, labels: labelarray, minorTicks: false, htmlLabels: false});
 
 			   //chart1.setTheme(Wetland);
 			   chart1.addSeries("Protected",protecteddataarray,{stroke: {color:color}, fill: color});

@@ -214,7 +214,8 @@ define([
 			 	 this.map.removeLayer(this.UnitMapService);
 			 	}		
 
-			  this.emit("finished", {inputLayer:this.inputLayer}); 
+				
+			  this.emit("finished", {inputLayer:this.inputLayer,label:this.labtext.value}); 
 			  
 			  this.hidesteps("all"); 
 			  
@@ -302,7 +303,8 @@ define([
 		   	this.map.addLayer(this.UnitMapService);
 		   	
 		   	this.inputLayer = new esri.layers.FeatureLayer("http://maps.usm.edu:6080/arcgis/rest/services/GreatLakes/Units/MapServer/" + item.rel,{
-			   						mode:esri.layers.FeatureLayer.MODE_SELECTION
+			   						mode:esri.layers.FeatureLayer.MODE_SELECTION,
+									outFields: ["OBJECTID", "Label"]
 			   						});
 
 		   	symbol = this.symbol;
@@ -312,7 +314,8 @@ define([
 			this.map.addLayer(this.inputLayer);
 			
 			this.UnitClickHandle = dojo.connect(this.map,"onClick", this, this.SelectUnit);
-			   				
+			
+			this.labtext = query("#" + this.domNode.id + " .labeltext")[0];			
 		   
 		   },
 		   
@@ -331,12 +334,13 @@ define([
                     point.y + toleraceInMapCoords,
                     this.map.spatialReference );
                     
-           
+		  query.outFields = ["OBJECTID", "Label"];;
+		  
 		  //query.where = this.maplayer.layerDefinitions[1];	
           
-		  thing = this;
+		  //thing = this;
 		  
-          this.inputLayer.selectFeatures(query,esri.layers.FeatureLayer.SELECTION_ADD,function(f,sm) {thing.featureSelector(f,sm,thing)});
+          this.inputLayer.selectFeatures(query,esri.layers.FeatureLayer.SELECTION_ADD,lang.hitch(this,this.featureSelector));
 			 
 			 
 			 //alert(evt.mapPoint)  
@@ -346,10 +350,20 @@ define([
 		   
 	featureSelector: function(features, selectionMethod) {
 		
-		//alert(features)
+		console.log(features[0].attributes)
+		
 		//this.removeAll();
 		
 		//feats = this.featureLayer.getSelectedFeatures()
+	
+		
+		if (this.labtext.value == "") {
+	
+			this.labtext.value = features[0].attributes.Label;
+	
+		} else {
+			this.labtext.value = this.labtext.value + " and " + features[0].attributes.Label;
+		}
 		
 	},
 		   
@@ -378,6 +392,8 @@ define([
 		   	
 		   	this.hidesteps("step-step2site")
 
+			this.labtext = query("#" + this.domNode.id + " .labeltextsite")[0];	
+			
 		   	this.toolbar = new esri.toolbars.Draw(map);
 
 		   	this.toolbar.activate(esri.toolbars.Draw.POLYGON, {showTooltips:true});
