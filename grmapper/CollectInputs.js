@@ -224,6 +224,7 @@ define([
 		   
 		   clearmap: function() {
 			 
+			 this.labtext.value = ""
 			 	//this.inputLayer.clear(); 
 			 	//this.inputLayer.redraw(); 
 			 	if (this.inputLayer.type == undefined) {

@@ -588,17 +588,17 @@
 	          mapspanel = dojo.position('mapspan', true)
 	          //mapel = dojo.position('map', true)
 	          
-	          if (window.innerHeight > 900) {
+	          //if (window.innerHeight > 900) {
 		          
-		       a.style.height = Math.round(window.innerHeight * 0.60) + 'px';
+		       //a.style.height = Math.round(window.innerHeight * 0.60) + 'px';
 		     
 		          
-	          } else {
+	          //} else {
 		       
-		       a.style.height = '550px';  
+		       a.style.height = '650px';  
 		
 		          
-	          }
+	          //}
 	          
 	          map.resize();
 	          map.reposition();
@@ -762,11 +762,13 @@ border-radius: 5px;" -->
 	           	  
                   
                   <!--<li class="nav-header"></li> -->
-				  <li><span style="margin-left:10px"><strong> Available Layers </strong></span></li>
+				  <li><span style="margin-left:10px"><strong>Available Layers: Composite score </strong></span></li>
                   <li class="nav-header">Model Scores</li>
                   <li><a href="#" class="layerchecks" rel="1"><span class="ispace"></span> Landbird Model Score </a></li>
                   <li><a href="#" class="layerchecks" rel="2"><span class="ispace"></span> Shorebird Model Score</a></li>
                   <li><a href="#" class="layerchecks" rel="3"><span class="ispace"></span> Waterfowl Model Score </a></li>
+				  <li class="divider"></li>
+				  <li><span style="margin-left:10px"><strong>Available Layers: Individual Attributes </strong></span></li>
                   <li class="nav-header">Habitat </li>
                   <li><a href="#" class="layerchecks" rel="4"><span class="ispace"></span> Landbird Habitat </a></li>
                   <li><a href="#" class="layerchecks" rel="5"><span class="ispace"></span> Shorebird Habitat </a></li>

@@ -227,7 +227,205 @@ define([
 
 			 if (this.dual) {
 
-			 
+			 ebp = query("#" + this.domNode.id + " .exporter");  
+	  
+		
+			 bn = ebp[0];
+	
+   
+		this.exportButton = new Button({
+			label: "Export Report",
+			onClick: lang.hitch(this,function(){
+
+			outcontent = "";
+			
+	
+		   if (this.stype == "model") {
+
+					outcontent = outcontent + "<br>Right-click on the links below to download each chart. <br>"
+
+					sbh = query("#" + this.domNode.id + " .LandCoverSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					
+					// MUST FIX IN IE!!!!!
+					//outcontent = outcontent + "<img src=\"" + dataUrl1 + "\"/><br>"
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Land Cover Summary Chart </a><br>"
+
+					sbh = query("#" + this.domNode.id + " .NaturalLandCoverChart");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					//console.log(sbhcanvas);
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Natural Land Cover Chart </a><br>"
+					
+					sbh = query("#" + this.domNode.id + " .ShoreBirdSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Shorebirds Habitat Summary Chart </a><br>"
+					
+					sbh = query("#" + this.domNode.id + " .WaterBirdSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl2 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl2 +  "' target='_blank'> Download Waterfowl Habitat Summary Chart </a><br>"
+		 
+					sbh = query("#" + this.domNode.id + " .LandBirdSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl3 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl3 +  "' target='_blank'> Download Landbirds Habitat Summary Chart </a><br>"	
+				
+				
+		   } else {
+
+
+					outcontent = outcontent + "<br>Right-click on the links below to download each chart. <br>"
+					
+					sbh = query("#" + this.domNode.id + " .ShoreBirdHabitatSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Shorebirds Habitat Summary Chart </a><br>"
+					
+					sbh = query("#" + this.domNode.id + " .WaterBirdHabitatSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl2 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl2 +  "' target='_blank'> Download Waterfowl Habitat Summary Chart </a><br>"
+		 
+					sbh = query("#" + this.domNode.id + " .LandBirdHabitatSummary");
+					sbhcanvas = dojo.query(sbh[0]).children();
+					
+					dataUrl3 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl3 +  "' target='_blank'> Download Landbirds Habitat Summary Chart </a><br>"				
+
+				}
+		   
+	
+
+			
+			myDialog = new Dialog({
+					title: "Report",
+					content: outcontent,  //"<img src=" + dataUrl + " />",
+					style: "width: 600px, height: 300px"
+			});
+			
+			myDialog.show();
+			
+        })
+		
+		}, bn);	
+
+		bn = ebp[1];
+
+		this.exportButton = new Button({
+			label: "Export Report",
+			onClick: lang.hitch(this,function(){
+
+			outcontent = "";
+			
+	
+		   if (this.stype == "model") {
+
+					outcontent = outcontent + "<br>Right-click on the links below to download each chart. <br>"
+
+					sbh = query("#" + this.domNode.id + " .LandCoverSummary");
+					sbhcanvas = dojo.query(sbh[1]).children();
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					
+					// MUST FIX IN IE!!!!!
+					//outcontent = outcontent + "<img src=\"" + dataUrl1 + "\"/><br>"
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Land Cover Summary Chart </a><br>"
+
+					sbh = query("#" + this.domNode.id + " .NaturalLandCoverChart");
+					sbhcanvas = dojo.query(sbh[1]).children();
+					
+					//console.log(sbhcanvas);
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Natural Land Cover Chart </a><br>"
+					
+					sbh = query("#" + this.domNode.id + " .ShoreBirdSummary");
+					sbhcanvas = dojo.query(sbh[1]).children();
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Shorebirds Habitat Summary Chart </a><br>"
+					
+					sbh = query("#" + this.domNode.id + " .WaterBirdSummary");
+					sbhcanvas = dojo.query(sbh[1]).children();
+					
+					dataUrl2 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl2 +  "' target='_blank'> Download Waterfowl Habitat Summary Chart </a><br>"
+		 
+					sbh = query("#" + this.domNode.id + " .LandBirdSummary");
+					sbhcanvas = dojo.query(sbh[1]).children();
+					
+					dataUrl3 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl3 +  "' target='_blank'> Download Landbirds Habitat Summary Chart </a><br>"	
+				
+				
+		   } else {
+
+
+					outcontent = outcontent + "<br>Right-click on the links below to download each chart. <br>"
+					
+					sbh = query("#" + this.domNode.id + " .ShoreBirdHabitatSummary");
+					sbhcanvas = dojo.query(sbh[1]).children();
+					
+					dataUrl1 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl1 +  "' target='_blank'> Download Shorebirds Habitat Summary Chart </a><br>"
+					
+					sbh = query("#" + this.domNode.id + " .WaterBirdHabitatSummary");
+					sbhcanvas = dojo.query(sbh[1]).children();
+					
+					dataUrl2 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl2 +  "' target='_blank'> Download Waterfowl Habitat Summary Chart </a><br>"
+		 
+					sbh = query("#" + this.domNode.id + " .LandBirdHabitatSummary");
+					sbhcanvas = dojo.query(sbh[1]).children();
+					
+					dataUrl3 = sbhcanvas[0].toDataURL();
+					
+					outcontent = outcontent + "<a href='" + dataUrl3 +  "' target='_blank'> Download Landbirds Habitat Summary Chart </a><br>"				
+
+				}
+		   
+	
+
+			
+			myDialog = new Dialog({
+					title: "Report",
+					content: outcontent,  //"<img src=" + dataUrl + " />",
+					style: "width: 600px, height: 300px"
+			});
+			
+			myDialog.show();
+			
+        })
+		
+		}, bn);				
 			 
 			 
 			 
@@ -656,24 +854,54 @@ define([
 			   pnodes = query("#" + this.domNode.id + " ." + results.paramName + "Table.poftotal" + useSide);
 			   cnodes = query("#" + this.domNode.id + " ." + results.paramName + "Table.cpercent" + useSide);
 			   ppnodes = query("#" + this.domNode.id + " ." + results.paramName + "Table.percentp" + useSide);
+			   cppnodes = query("#" + this.domNode.id + " ." + results.paramName + "Table.cpp" + useSide);
+			   goalnodes = query("#" + this.domNode.id + " ." + results.paramName + "GoalInfo" + useSide);
 			   
 			   tota = 0
+			   totpa = 0
+			   totcpp = 0
+			   totalarea = 0
 			   dojo.forEach(tnodes, function(n, j) {
 				   
 				   pa = dataarray[5-j] + protecteddataarray[5-j];
 				   tota = tota + pa;
+				   totpa = totpa + protecteddataarray[5-j];
+					
+				
 				   n.innerHTML = pa;
 				   
 				   ppval = ((protecteddataarray[5-j] / pa) * 100).toFixed(2)
+				   
+				   
 				   if (ppval == "NaN") {
 					ppnodes[j].innerHTML = ""  
 				   } else {
-				   	ppnodes[j].innerHTML = ((protecteddataarray[5-j] / pa) * 100).toFixed(2)
+				   	ppnodes[j].innerHTML = ppval;
+					totcpp = ((totpa / tota) * 100).toFixed(2)
 				   }
 				   
-
+				   if (cppnodes.length == ppnodes.length) {
+				   
+						cppnodes[j].innerHTML = totcpp
+						
+							
+							cpp = (((totpa / tota) * 100))
+							goalnode = goalnodes[0];
+						    if (cpp >= 40) {
+			   
+								goalnode.innerHTML = "<b>The established goal has been met.<b>"
+			   
+							} else {
+							
+								goalnode.innerHTML = "<b>The established goal has not been met.<b>"
+								
+							}
+				   
+				   }
 				   
 			   });
+			   
+
 			   
 			   
 			   totp = 0
